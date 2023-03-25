@@ -1,0 +1,26 @@
+.header {
+    font-family: 'Source Sans Pro';
+    padding: 10px 45px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    .router {
+        text-decoration: none;
+        color: #606060;
+        outline: 0;
+    }
+    
+    .router-divider {
+        border-color: lightgray;
+        border-right-width: 2px !important;
+        margin: 3px 15px;
+    }
+
+    .cart-button {
+        margin-left: 30px;
+        height: 30px;
+        color: white;
+        border-radius: 1px;
+    }
+}
