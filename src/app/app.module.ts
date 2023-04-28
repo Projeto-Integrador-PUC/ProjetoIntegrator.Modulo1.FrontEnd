@@ -14,6 +14,7 @@ import { CarrinhoComponent } from './rotas/carrinho/carrinho.component';
 import { HomeComponent } from './rotas/home/home.component';
 import { LojaComponent } from './rotas/loja/loja.component';
 import { SobreComponent } from './rotas/sobre/sobre.component';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,9 @@ import { SobreComponent } from './rotas/sobre/sobre.component';
     MatDividerModule,
     MatIconModule,
   ],
-  providers: [],
+  providers: [
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { subscriptSizing: 'dynamic' } }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
