@@ -18,4 +18,12 @@ export class RotasService {
   public get ultimaRota(): string {
     return this.router.url.split('/').pop() ?? '';
   }
+
+  public navegarPara(rota: string): void {
+    this.router.navigateByUrl(this.router.url + '/' + rota)
+  }
+
+  public voltar(): void {
+    this.router.navigateByUrl(this.router.url.split('/').slice(0, -1).join('/'));
+  }
 }
