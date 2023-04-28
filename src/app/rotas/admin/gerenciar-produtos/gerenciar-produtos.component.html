@@ -1,1 +1,12 @@
-<p>gerenciar-produtos works!</p>
+<div class="gerenciar-produtos">
+    <mat-card class="card">
+        <div class="title">Produtos</div>
+        <div class="options d-flex align-items-center">
+            <div class="input-wrapper d-flex align-items-center h-100">
+                <mat-icon class="search-icon">search</mat-icon>
+                <input type="text" placeholder="Pesquisar" class="search-bar h-100" [(ngModel)]="searchValue">
+            </div>
+            <button class="admin-button h-100" mat-raised-button color="white"><mat-icon>add</mat-icon>Novo produto</button>
+        </div>
+    </mat-card>
+</div>
