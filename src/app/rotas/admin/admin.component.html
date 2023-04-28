@@ -1,0 +1,13 @@
+<div class="d-flex align-items-center p-2 header">
+    <mat-icon (click)="drawer.toggle()" class="icon" *ngIf="!drawer.opened">menu</mat-icon>
+    <mat-icon (click)="drawer.toggle()" class="icon" *ngIf="drawer.opened">close</mat-icon>
+    <span class="title">Painel do administrador</span>
+</div>
+<mat-drawer-container>
+    <mat-drawer #drawer mode="side">
+      <app-side-bar (close)="closeSideBar()"></app-side-bar>
+    </mat-drawer>
+    <mat-drawer-content class="min-vh-100">
+      <router-outlet></router-outlet>
+    </mat-drawer-content>
+</mat-drawer-container>

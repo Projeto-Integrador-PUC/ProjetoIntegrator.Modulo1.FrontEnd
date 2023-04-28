@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './rotas/home/home.component';
-import { SobreComponent } from './rotas/sobre/sobre.component';
-import { LojaComponent } from './rotas/loja/loja.component';
+import { HeaderComponent } from './header/header.component';
+import { AdminModule } from './rotas/admin/admin.module';
 import { AjudaComponent } from './rotas/ajuda/ajuda.component';
 import { CarrinhoComponent } from './rotas/carrinho/carrinho.component';
-import { HeaderComponent } from './header/header.component';
+import { HomeComponent } from './rotas/home/home.component';
+import { LojaComponent } from './rotas/loja/loja.component';
+import { SobreComponent } from './rotas/sobre/sobre.component';
 
 @NgModule({
   declarations: [
@@ -21,14 +23,16 @@ import { HeaderComponent } from './header/header.component';
     LojaComponent,
     AjudaComponent,
     CarrinhoComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   imports: [
-    BrowserModule,
+    AdminModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    BrowserModule,
+    MatButtonModule,
     MatDividerModule,
     MatIconModule,
-    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
