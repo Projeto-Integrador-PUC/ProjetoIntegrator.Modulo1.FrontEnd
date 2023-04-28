@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ProjetoIntegrador.Modulo1.App';
+  rotasSemHeader = ['/admin'];
+
+  get exibirHeader(): boolean {
+    return !this.rotasSemHeader.some(rota => this.router.url.startsWith(rota));
+  }
+
+  constructor(public router: Router) { }
 }
