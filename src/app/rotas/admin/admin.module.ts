@@ -13,6 +13,7 @@ import { AdminService } from './admin.service';
 import { GerenciarProdutosComponent } from './gerenciar-produtos/gerenciar-produtos.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { FormsModule } from '@angular/forms';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 
 
@@ -26,6 +27,7 @@ import { FormsModule } from '@angular/forms';
     AdminRoutingModule,
     CommonModule,
     FormsModule,
+    ImageCropperModule,
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
