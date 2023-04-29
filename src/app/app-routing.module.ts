@@ -15,6 +15,7 @@ const rotas: Routes = [
   { path: 'loja', component: LojaComponent },
   { path: 'ajuda', component: AjudaComponent },
   { path: 'carrinho', component: CarrinhoComponent },
+  { path: 'admin', loadChildren: () => import('./rotas/admin/admin.module').then(m => m.AdminModule) }
 ];
 
 @NgModule({

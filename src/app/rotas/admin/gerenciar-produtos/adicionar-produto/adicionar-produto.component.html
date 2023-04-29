@@ -1,0 +1,79 @@
+<mat-icon class="icon-button" (click)="voltar()">arrow_back_ios</mat-icon>
+<div class="adicionar-produto d-flex flex-column align-items-center">
+    <div class="container w-auto">
+        <div class="title">
+            <span>Adicionar Produto</span>
+        </div>
+        <div class="subtitle">
+            <span>Adicione um novo produto ao seu catálogo.</span>
+        </div>
+        <form [formGroup]="formulario" (ngSubmit)="adicionarProduto()">
+            <div class="double-field d-flex mb-4">
+                <div class="field">
+                    <mat-form-field appearance="outline" color="primary" class="product-name">
+                        <mat-label>Nome do produto</mat-label>
+                        <input matInput formControlName="nome">
+                    </mat-form-field>
+                </div>
+
+                <div class="field">
+                    <mat-form-field appearance="outline" color="primary" class="value">
+                        <mat-label>Preço</mat-label>
+                        <input matInput currencyMask formControlName="preco">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="field mb-4">
+                <mat-form-field appearance="outline" color="primary" class="description w-100">
+                    <mat-label>Descrição</mat-label>
+                    <textarea matInput formControlName="descricao"></textarea>
+                </mat-form-field>
+            </div>
+            <div class="triple-field d-flex align-items-center mb-4">
+                <div class="field">
+                    <mat-form-field appearance="outline" color="primary" class="stock">
+                        <mat-label>Quantidade em estoque</mat-label>
+                        <input matInput mask="99999" formControlName="quantidade">
+                    </mat-form-field>
+                </div>
+                <div class="field">
+                    <mat-form-field appearance="outline" color="primary" class="category">
+                        <mat-label>Categoria</mat-label>
+                        <mat-select formControlName="categoria">
+                            <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">
+                                {{ categoria.nome }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="field">
+                    <mat-slide-toggle class="toggle" color="primary" formControlName="destaque"></mat-slide-toggle>
+                    <span class="ml-2">Produto em destaque</span>
+                </div>
+            </div>
+            <div class="field">
+                <button type="button" mat-raised-button color="white" (click)="fileInput.click()" class="me-2">Escolher Imagem</button>
+                <input #fileInput type="file" hidden (change)="alterarImagem($event)"/>
+                <button type="submit" mat-raised-button color="white" [disabled]="!formulario.valid">
+                    <div class="d-flex align-items-center">
+                        <span>Salvar produto</span>
+                        <mat-spinner class="ms-1" [diameter]="20" color="primary" *ngIf="loading$ | async"></mat-spinner>
+                    </div>
+                </button>
+                <image-cropper
+                    class="mt-1"
+                    [imageChangedEvent]="alteracaoImagem"
+                    [maintainAspectRatio]="true"
+                    format="png"
+                    (imageCropped)="recortarImagem($event)"
+                    [cropperMinWidth]="800"
+                    [cropperMinHeight]="800"
+                    [cropperMaxWidth]="800"
+                    [cropperMaxHeight]="800"
+                ></image-cropper>
+
+                <img [src]="imagem" />
+            </div>
+        </form>
+    </div>
+</div>

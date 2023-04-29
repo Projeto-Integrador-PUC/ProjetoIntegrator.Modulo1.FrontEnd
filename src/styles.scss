@@ -5,16 +5,30 @@
 
 $my-primary: mat.define-palette(mat.$grey-palette, 500);
 $my-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$my-white: (
+  50: #ffffff,
+  100: #f2f2f2,
+  200: #e6e6e6,
+  300: #d9d9d9,
+  400: #cccccc,
+  500: #bfbfbf,
+  600: #b3b3b3,
+  700: #a6a6a6,
+  800: #999999,
+  900: #8c8c8c,
+);
 
 $my-theme: mat.define-light-theme((
  color: (
    primary: $my-primary,
    accent: $my-accent,
+   white: $my-white,
  ),
  density: 0,
 ));
 
 @include mat.button-theme($my-theme);
+@include mat.form-field-theme($my-theme);
 
 .material-symbols-outlined {
   font-variation-settings:
@@ -22,4 +36,14 @@ $my-theme: mat.define-light-theme((
   'wght' 400,
   'GRAD' 0,
   'opsz' 48
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  color: #606060;
+}
+
+.icon-button {
+  cursor: pointer;
 }

@@ -1,0 +1,8 @@
+<div class="side-bar">
+    <div class="side-bar-item" *ngFor="let item of sideBarItems">
+        <a [routerLink]="item.route" routerLinkActive="active" class="router d-flex" (click)="close.emit()">
+            <mat-icon class="material-symbols-outlined icon">{{ item.icon }}</mat-icon>
+            <span>{{ item.name }}</span>
+        </a>
+    </div>
+</div>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RotasService } from './shared/services/rotas.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ProjetoIntegrador.Modulo1.App';
+
+  constructor(public rotas: RotasService) { }
 }

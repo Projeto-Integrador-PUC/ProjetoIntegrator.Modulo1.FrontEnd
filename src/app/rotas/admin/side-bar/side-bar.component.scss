@@ -1,0 +1,21 @@
+.side-bar {
+    padding: 16px;
+
+    &-item {
+        .router {
+            text-decoration: none;
+            color: #606060;
+            outline: 0;
+            border-radius: 8px;
+            padding: 6px 8px;
+
+            &:hover {
+                background-color: #f5f5f5;
+            }
+
+            .icon {
+                margin-right: 8px;
+            }
+        }
+    }
+}
