@@ -28,6 +28,7 @@ $my-theme: mat.define-light-theme((
 ));
 
 @include mat.button-theme($my-theme);
+@include mat.form-field-theme($my-theme);
 
 .material-symbols-outlined {
   font-variation-settings:
@@ -41,4 +42,8 @@ body {
   font-family: "Lato", sans-serif;
   font-weight: 300;
   color: #606060;
+}
+
+.icon-button {
+  cursor: pointer;
 }
