@@ -21,7 +21,7 @@ jobs:
         run: npm install
       
       - name: Build
-        run: npm run build --base-href /ProjetoIntegrator.Modulo1.FrontEnd
+        run: npm run build:prod
       
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
