@@ -12,31 +12,19 @@
     }
 
     .options {
-        height: 32px;
+        height: 36px;
+        position: relative;
         
-        .input-wrapper {
-            position: relative;
-            margin-right: 16px;
+        .search-bar {
+            background-color: #F9FAFB;
+            margin-right: 8px;
+        }
     
-            .search-icon {
-                position: absolute;
-                margin-left: 5px;
-                font-size: 20px;
-                height: 20px;
-                width: 20px;
-                color: #9CA3AF;
-            }
-    
-            .search-bar {
-                padding-left: 30px;
-                background-color: #F9FAFB;
-                border-radius: 8px;
-                border-color: #E5E7EB;
-            }
-
-            .admin-button {
-                border-radius: 8px;
-            }
+        .search-icon {
+            padding: 5px;
+            color: #9CA3AF;
         }
     }
 }
+
+  

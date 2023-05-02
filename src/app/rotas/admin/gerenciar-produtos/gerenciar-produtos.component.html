@@ -2,11 +2,11 @@
     <mat-card class="card">
         <ng-container *ngIf="rotas.ultimaRota === 'produtos'">
             <div class="title">Produtos</div>
-            <div class="options d-flex align-items-center">
-                <div class="input-wrapper d-flex align-items-center h-100">
-                    <mat-icon class="search-icon">search</mat-icon>
-                    <input type="text" placeholder="Pesquisar" class="search-bar h-100" [(ngModel)]="searchValue">
-                </div>
+            <div class="options d-flex align-items-center justify-content-end">
+                <mat-form-field appearance="outline" color="primary" class="search-bar small-input">
+                    <input matInput [(ngModel)]="searchValue" placeholder="Busque pelo nome">
+                    <mat-icon matPrefix class="search-icon">search</mat-icon>
+                </mat-form-field>
                 <button class="admin-button h-100" mat-raised-button color="white" (click)="adicionarProduto()"><mat-icon>add</mat-icon>Novo produto</button>
             </div>
         </ng-container>
