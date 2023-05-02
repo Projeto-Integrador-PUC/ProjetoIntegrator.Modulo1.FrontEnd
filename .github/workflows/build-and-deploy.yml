@@ -26,7 +26,7 @@ jobs:
       - name: 'Create and copy CNAME file'
         run: |
           echo $DOMAIN > ./dist/CNAME
-          echo "CNAME file created"
+          echo "CNAME file created for domain $DOMAIN"
 
       - name: 'Create 404.html file'
         run: |
