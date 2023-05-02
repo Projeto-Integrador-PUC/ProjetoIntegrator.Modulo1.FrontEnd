@@ -25,8 +25,8 @@ jobs:
 
       - name: 'Create and copy CNAME file'
         run: |
-          echo $DOMAIN > ./dist/CNAME
-          echo "CNAME file created for domain $DOMAIN"
+          echo ${{ vars.DOMAIN }} > ./dist/CNAME
+          echo "CNAME file created for domain ${{ vars.DOMAIN }}"
 
       - name: 'Create 404.html file'
         run: |
