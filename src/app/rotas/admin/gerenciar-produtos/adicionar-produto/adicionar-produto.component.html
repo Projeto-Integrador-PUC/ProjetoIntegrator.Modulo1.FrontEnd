@@ -10,34 +10,34 @@
         <form [formGroup]="formulario" (ngSubmit)="adicionarProduto()">
             <div class="double-field d-flex mb-4">
                 <div class="field">
-                    <mat-form-field appearance="outline" color="primary" class="product-name">
+                    <mat-form-field appearance="outline" color="primary" class="product-name medium-input">
                         <mat-label>Nome do produto</mat-label>
                         <input matInput formControlName="nome">
                     </mat-form-field>
                 </div>
 
                 <div class="field">
-                    <mat-form-field appearance="outline" color="primary" class="value">
+                    <mat-form-field appearance="outline" color="primary" class="value medium-input">
                         <mat-label>Preço</mat-label>
                         <input matInput currencyMask formControlName="preco">
                     </mat-form-field>
                 </div>
             </div>
             <div class="field mb-4">
-                <mat-form-field appearance="outline" color="primary" class="description w-100">
+                <mat-form-field appearance="outline" color="primary" class="description w-100 medium-input">
                     <mat-label>Descrição</mat-label>
                     <textarea matInput formControlName="descricao"></textarea>
                 </mat-form-field>
             </div>
             <div class="triple-field d-flex align-items-center mb-4">
                 <div class="field">
-                    <mat-form-field appearance="outline" color="primary" class="stock">
+                    <mat-form-field appearance="outline" color="primary" class="stock medium-input">
                         <mat-label>Quantidade em estoque</mat-label>
                         <input matInput mask="99999" formControlName="quantidade">
                     </mat-form-field>
                 </div>
                 <div class="field">
-                    <mat-form-field appearance="outline" color="primary" class="category">
+                    <mat-form-field appearance="outline" color="primary" class="category medium-input">
                         <mat-label>Categoria</mat-label>
                         <mat-select formControlName="categoria">
                             <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">
