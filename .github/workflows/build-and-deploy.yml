@@ -21,10 +21,22 @@ jobs:
         run: npm install
       
       - name: Build
-        run: npm run build
+        run: npm run build:prod
+
+      - name: 'Create and copy CNAME file'
+        run: |
+          echo $DOMAIN > ./dist/CNAME
+          echo "CNAME file created"
+
+      - name: 'Create 404.html file'
+        run: |
+          cp ./dist/index.html ./dist/404.html
+          echo "404.html file created"
       
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
+          TOKEN: ${{ secrets.FULL_ACCESS_TOKEN }}
           BRANCH: gh-pages
           FOLDER: dist
+          TARGET_FOLDER: .
