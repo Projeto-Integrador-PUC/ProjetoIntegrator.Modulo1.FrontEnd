@@ -18,7 +18,7 @@ $my-white: (
   900: #8c8c8c,
 );
 
-$my-theme: mat.define-light-theme((
+$my-medium-theme: mat.define-light-theme((
  color: (
    primary: $my-primary,
    accent: $my-accent,
@@ -27,8 +27,24 @@ $my-theme: mat.define-light-theme((
  density: 0,
 ));
 
-@include mat.button-theme($my-theme);
-@include mat.form-field-theme($my-theme);
+$my-small-theme: mat.define-light-theme((
+ color: (
+   primary: $my-primary,
+   accent: $my-accent,
+   white: $my-white,
+ ),
+ density: minimum,
+));
+
+@include mat.button-theme($my-medium-theme);
+
+.small-input {
+  @include mat.form-field-theme($my-small-theme);
+}
+
+.medium-input {
+  @include mat.form-field-theme($my-medium-theme);
+}
 
 .material-symbols-outlined {
   font-variation-settings:

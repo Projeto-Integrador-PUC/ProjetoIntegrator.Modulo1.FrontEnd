@@ -1,0 +1,20 @@
+.image {
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+}
+
+.detail-row {
+    height: 0;
+}
+
+.item-description {
+    padding: 5px 10px;
+}
+
+@media only screen and (max-width: 800px) {
+    .hide-on-mobile {
+      display: none;
+    }
+}
+  

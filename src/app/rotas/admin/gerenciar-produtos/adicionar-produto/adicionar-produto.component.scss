@@ -31,3 +31,55 @@
 mat-form-field {
     background-color: #F9FAFB;
 }
+
+@media only screen and (max-width: 800px) {
+    .triple-field {
+        flex-direction: column;
+
+        .field:not(:first-child) {
+            margin-left: 0;
+            margin-top: 16px;
+        }
+
+        .field {
+            width: 100%;
+        }
+    }
+
+    .double-field {
+        flex-direction: column;
+
+        .field:not(:first-child) {
+            margin-left: 0;
+            margin-top: 16px;
+        }
+
+        .field {
+            width: 100%;
+
+            .product-name {
+                width: 100%;
+            }
+
+            .value {
+                width: 100%;
+            }
+        }
+    }
+
+    .buttons-container {
+        justify-content: inherit;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        button:not(:first-child) {
+            margin-left: 0;
+            margin-top: 16px;
+        }
+
+        button {
+            width: 100%;
+        }
+    }
+}

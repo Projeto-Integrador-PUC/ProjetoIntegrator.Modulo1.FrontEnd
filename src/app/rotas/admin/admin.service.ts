@@ -17,6 +17,11 @@ export class AdminService {
             .pipe(map(resposta => resposta.dados ?? []));
     }
 
+    public obterProdutos(): Observable<Produto[]> {
+        return this.http.get<Resposta<Produto[]>>(this.produtosEndpoint)
+            .pipe(map(resposta => resposta.dados ?? []));
+    }
+
     public adicionarProduto(produto: Produto): Observable<Resposta> {
         return this.http.post<Resposta>(this.produtosEndpoint, produto);
     }

@@ -5,6 +5,7 @@ export interface Produto {
     preco: number;
     quantidade: number;
     categoria: number;
+    nomeCategoria?: string;
     imagem: string;
     destaque: boolean;
 }
