@@ -1,6 +1,6 @@
 <mat-icon class="icon-button" (click)="voltar()">arrow_back_ios</mat-icon>
 <div class="adicionar-produto d-flex flex-column align-items-center">
-    <div class="container w-auto">
+    <div class="container w-100">
         <div class="title">
             <span>Adicionar Produto</span>
         </div>
@@ -51,7 +51,7 @@
                     <span class="ml-2">Produto em destaque</span>
                 </div>
             </div>
-            <div class="field">
+            <div class="field buttons-container">
                 <button type="button" mat-raised-button color="white" (click)="fileInput.click()" class="me-2">Escolher Imagem</button>
                 <input #fileInput type="file" hidden (change)="alterarImagem($event)"/>
                 <button type="submit" mat-raised-button color="white" [disabled]="!formulario.valid">

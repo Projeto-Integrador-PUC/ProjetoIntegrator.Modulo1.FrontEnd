@@ -16,10 +16,10 @@ import { FormularioProduto } from './interfaces/formulario-produto';
 })
 export class AdicionarProdutoComponent {
 
-  categorias: Categoria[] = [];
-  alteracaoImagem!: Event;
-  formulario!: FormGroup<FormularioProduto>;
-  loading$ = new BehaviorSubject<boolean>(false);
+  public categorias: Categoria[] = [];
+  public alteracaoImagem!: Event;
+  public formulario!: FormGroup<FormularioProduto>;
+  public loading$ = new BehaviorSubject<boolean>(false);
 
   get imagem(): string {
     return this.formulario.controls.imagem.value;
