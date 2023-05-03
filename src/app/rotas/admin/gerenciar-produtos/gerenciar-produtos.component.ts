@@ -7,7 +7,7 @@ import { RotasService } from 'src/app/shared/services/rotas.service';
   styleUrls: ['./gerenciar-produtos.component.scss']
 })
 export class GerenciarProdutosComponent {
-  searchValue = '';
+  public searchValue = '';
 
   constructor(public rotas: RotasService) { }
 

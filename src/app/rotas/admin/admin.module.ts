@@ -11,6 +11,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatTableModule } from '@angular/material/table';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { NgxMaskDirective } from 'ngx-mask';
@@ -20,6 +21,7 @@ import { AdminComponent } from './admin.component';
 import { AdminService } from './admin.service';
 import { AdicionarProdutoComponent } from './gerenciar-produtos/adicionar-produto/adicionar-produto.component';
 import { GerenciarProdutosComponent } from './gerenciar-produtos/gerenciar-produtos.component';
+import { TabelaProdutosComponent } from './gerenciar-produtos/tabela-produtos/tabela-produtos.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 
 
@@ -29,7 +31,8 @@ import { SideBarComponent } from './side-bar/side-bar.component';
     AdminComponent,
     SideBarComponent,
     GerenciarProdutosComponent,
-    AdicionarProdutoComponent
+    AdicionarProdutoComponent,
+    TabelaProdutosComponent
   ],
   imports: [
     AdminRoutingModule,
@@ -47,6 +50,7 @@ import { SideBarComponent } from './side-bar/side-bar.component';
     MatSidenavModule,
     MatSlideToggleModule,
     MatProgressSpinnerModule,
+    MatTableModule,
     NgxMaskDirective,
     ReactiveFormsModule,
   ],
