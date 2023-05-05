@@ -1,14 +1,16 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { AfterViewInit, ChangeDetectionStrategy, Component, Input, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+
 import { Coluna } from 'src/app/shared/interfaces/coluna';
 import { Produto } from 'src/app/shared/interfaces/produto';
-import { AdminService } from '../../admin.service';
 
 @Component({
   selector: 'app-tabela-produtos',
   templateUrl: './tabela-produtos.component.html',
   styleUrls: ['./tabela-produtos.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('detailExpand', [
       state('collapsed', style({ height: '0px', minHeight: '0' })),
@@ -17,9 +19,17 @@ import { AdminService } from '../../admin.service';
     ]),
   ],
 })
-export class TabelaProdutosComponent {
-  public loading$ = new BehaviorSubject<boolean>(false);
-  public produtos: Produto[] = [];
+export class TabelaProdutosComponent implements AfterViewInit {
+
+  @Input() produtos: Produto[] = [];
+  @Input() filtragem: (item: Produto, filtro: string) => boolean = () => true;
+  @Input() set filtro(filtro: string) {
+    this.dados.filter = filtro;
+  }
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  public dados = new MatTableDataSource<Produto>([]);
   public elementoExpandido!: Produto;
   public colunas: Coluna[] = [
     { nomePropriedade: 'nome', nomeColuna: 'Nome' },
@@ -32,16 +42,9 @@ export class TabelaProdutosComponent {
   public colunasComExpandir: Coluna[] = [...this.colunas, { nomePropriedade: 'expandir', nomeColuna: '' }];
   public propriedades = this.colunasComExpandir.map(coluna => coluna.nomePropriedade);
 
-  constructor(private adminService: AdminService) { }
-
-  ngOnInit(): void {
-    this.loading$.next(true);
-    this.adminService.obterProdutos()
-      .subscribe(produtos => this.produtos = produtos)
-      .add(() => this.loading$.next(false));
-  }
-
-  teste(elemento: unknown, elementoExpandido: unknown) {
-    console.log(elemento, elementoExpandido);
+  ngAfterViewInit(): void {
+    this.dados = new MatTableDataSource<Produto>(this.produtos);
+    this.dados.paginator = this.paginator;
+    this.dados.filterPredicate = this.filtragem;
   }
 }

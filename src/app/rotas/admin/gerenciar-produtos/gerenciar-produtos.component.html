@@ -9,8 +9,14 @@
                 </mat-form-field>
                 <button class="admin-button h-100" mat-raised-button color="white" (click)="adicionarProduto()"><mat-icon>add</mat-icon>Novo produto</button>
             </div>
-            <div>
-                <app-tabela-produtos></app-tabela-produtos>
+            <div class="d-flex justify-content-center">
+                <app-tabela-produtos
+                class="w-100"
+                [produtos]="produtos"
+                [filtro]="searchValue"
+                [filtragem]="filtragem"
+                *ngIf="!loading"></app-tabela-produtos>
+                <mat-spinner [diameter]="40" color="primary" *ngIf="loading"></mat-spinner>
             </div>
         </ng-container>
         <ng-container *ngIf="rotas.ultimaRota !== 'produtos'">
