@@ -8,7 +8,7 @@ import { Categoria } from '../../shared/interfaces/categoria';
 
 @Injectable()
 export class AdminService {
-    produtosEndpoint = API + '/produtos';
+    private produtosEndpoint = API + '/produtos';
 
     constructor(private http: HttpClient) { }
 

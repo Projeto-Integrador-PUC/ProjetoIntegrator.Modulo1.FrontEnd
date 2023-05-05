@@ -1,7 +1,6 @@
-<div class="d-flex justify-content-center">
-    <mat-spinner [diameter]="40" color="primary" *ngIf="loading$ | async"></mat-spinner>
-    <ng-container *ngIf="produtos.length > 0 && !(loading$ | async)">
-        <table mat-table [dataSource]="produtos" class="mat-elevation-z8" multiTemplateDataRows>
+<div class="d-flex justify-content-center flex-column">
+    <ng-container *ngIf="produtos.length > 0">
+        <table mat-table [dataSource]="dados" class="mat-elevation-z8 product-table" multiTemplateDataRows>
             <ng-container matColumnDef="{{ coluna.nomePropriedade}}" *ngFor="let coluna of colunas">
                 <ng-container [ngSwitch]="coluna.nomeColuna">
                     <ng-container *ngSwitchCase="'Imagem'">
@@ -27,7 +26,7 @@
                     </ng-container>
                     <ng-container *ngSwitchCase="'Categoria'">
                         <th mat-header-cell *matHeaderCellDef class="hide-on-mobile"><strong>{{ coluna.nomeColuna }}</strong></th>
-                        <td mat-cell *matCellDef="let element" class="hide-on-mobile"> {{ element[coluna.nomePropriedade].nome }} </td>
+                        <td mat-cell *matCellDef="let element" class="hide-on-mobile"> {{ element[coluna.nomePropriedade] }} </td>
                     </ng-container>
                     <ng-container *ngSwitchDefault>
                         <th mat-header-cell *matHeaderCellDef><strong>{{ coluna.nomeColuna }}</strong></th>
@@ -61,6 +60,7 @@
             (click)="elementoExpandido = elementoExpandido === element ? null : element">
             </tr>
             <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
-        </table>          
+        </table>
+        <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>        
     </ng-container>
 </div>
