@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 import { Produto } from 'src/app/shared/interfaces/produto';
 import { RotasService } from 'src/app/shared/services/rotas.service';
 import { AdminService } from '../admin.service';
@@ -27,5 +28,9 @@ export class GerenciarProdutosComponent {
 
   public adicionarProduto(): void {
     this.rotas.navegarPara('adicionar');
+  }
+
+  public filtragem(item: Produto, filtro: string): boolean {
+    return item.nome.toLowerCase().includes(filtro.toLowerCase().trim());
   }
 }

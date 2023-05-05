@@ -10,7 +10,12 @@
                 <button class="admin-button h-100" mat-raised-button color="white" (click)="adicionarProduto()"><mat-icon>add</mat-icon>Novo produto</button>
             </div>
             <div class="d-flex justify-content-center">
-                <app-tabela-produtos class="w-100" [produtos]="produtos" *ngIf="!loading"></app-tabela-produtos>
+                <app-tabela-produtos
+                class="w-100"
+                [produtos]="produtos"
+                [filtro]="searchValue"
+                [filtragem]="filtragem"
+                *ngIf="!loading"></app-tabela-produtos>
                 <mat-spinner [diameter]="40" color="primary" *ngIf="loading"></mat-spinner>
             </div>
         </ng-container>

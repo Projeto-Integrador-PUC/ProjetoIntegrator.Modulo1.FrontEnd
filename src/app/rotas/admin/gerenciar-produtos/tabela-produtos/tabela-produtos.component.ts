@@ -1,7 +1,8 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { ChangeDetectionStrategy, Component, Input, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, Input, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+
 import { Coluna } from 'src/app/shared/interfaces/coluna';
 import { Produto } from 'src/app/shared/interfaces/produto';
 
@@ -18,9 +19,13 @@ import { Produto } from 'src/app/shared/interfaces/produto';
     ]),
   ],
 })
-export class TabelaProdutosComponent {
+export class TabelaProdutosComponent implements AfterViewInit {
 
   @Input() produtos: Produto[] = [];
+  @Input() filtragem: (item: Produto, filtro: string) => boolean = () => true;
+  @Input() set filtro(filtro: string) {
+    this.dados.filter = filtro;
+  }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -40,5 +45,6 @@ export class TabelaProdutosComponent {
   ngAfterViewInit(): void {
     this.dados = new MatTableDataSource<Produto>(this.produtos);
     this.dados.paginator = this.paginator;
+    this.dados.filterPredicate = this.filtragem;
   }
 }
