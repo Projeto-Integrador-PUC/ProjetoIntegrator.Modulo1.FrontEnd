@@ -1,0 +1,16 @@
+.home {
+    width: 100%;
+    height: 100%;
+
+    .description-divider {
+        padding: 0 40%;
+    }
+}
+
+::ng-deep .home {
+    .home-loader ngx-skeleton-loader {
+        .skeleton-loader {
+            margin: 0 20px !important;
+        }
+    }
+}
