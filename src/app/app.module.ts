@@ -15,7 +15,6 @@ import { HeaderComponent } from './header/header.component';
 import { AdminModule } from './rotas/admin/admin.module';
 import { AjudaComponent } from './rotas/ajuda/ajuda.component';
 import { CarrinhoComponent } from './rotas/carrinho/carrinho.component';
-import { HomeComponent } from './rotas/home/home.component';
 import { LojaComponent } from './rotas/loja/loja.component';
 import { SobreComponent } from './rotas/sobre/sobre.component';
 import { CustomCurrencyMaskConfig } from './shared/constants/ngx-mask-config.const';
@@ -24,7 +23,6 @@ import { MatPaginatorPtBrService } from './shared/services/mat-paginator-pt-br.s
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     SobreComponent,
     LojaComponent,
     AjudaComponent,

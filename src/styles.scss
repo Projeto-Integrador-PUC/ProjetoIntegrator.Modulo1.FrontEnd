@@ -1,11 +1,10 @@
 @use '@angular/material' as mat;
 @import '~bootstrap/dist/css/bootstrap.min.css';
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @include mat.core();
 
-$my-primary: mat.define-palette(mat.$grey-palette, 500);
-$my-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
-$my-white: (
+$primary: mat.define-palette(mat.$grey-palette, 500);
+$accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$white: (
   50: #ffffff,
   100: #f2f2f2,
   200: #e6e6e6,
@@ -17,33 +16,43 @@ $my-white: (
   800: #999999,
   900: #8c8c8c,
 );
+$black: (
+  50: #000000,
+  100: #0d0d0d,
+  200: #1a1a1a,
+  300: #262626,
+  400: #333333,
+  500: #404040,
+  600: #4d4d4d,
+  700: #595959,
+  800: #666666,
+  900: #737373,
+);
 
 $my-medium-theme: mat.define-light-theme((
  color: (
-   primary: $my-primary,
-   accent: $my-accent,
-   white: $my-white,
+    primary: $primary,
+    accent: $accent,
+    white: $white,
+    black: $black,
  ),
  density: 0,
 ));
 
 $my-small-theme: mat.define-light-theme((
  color: (
-   primary: $my-primary,
-   accent: $my-accent,
-   white: $my-white,
+    primary: $primary,
+    accent: $accent,
+    white: $white,
+    black: $black,
  ),
  density: minimum,
 ));
 
-@include mat.button-theme($my-medium-theme);
+@include mat.all-component-themes($my-medium-theme);
 
 .small-input {
-  @include mat.form-field-theme($my-small-theme);
-}
-
-.medium-input {
-  @include mat.form-field-theme($my-medium-theme);
+  @include mat.form-field-density($my-small-theme);
 }
 
 .material-symbols-outlined {

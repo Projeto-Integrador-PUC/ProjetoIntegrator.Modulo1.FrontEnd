@@ -9,4 +9,21 @@ import { RotasService } from './shared/services/rotas.service';
 export class AppComponent {
 
   constructor(public rotas: RotasService) { }
+
+  get classeHeader(): string {
+    switch (this.rotas.rotaAtual) {
+      case 'home':
+        return 'header-home';
+      case 'sobre':
+        return 'header-sobre';
+      case 'loja':
+        return 'header-loja';
+      case 'ajuda':
+        return 'header-ajuda';
+      case 'carrinho':
+        return 'header-carrinho';
+      default:
+        return '';
+    }
+  }
 }

@@ -19,6 +19,10 @@ export class RotasService {
     return this.router.url.split('/').pop() ?? '';
   }
 
+  public get rotaAtual(): string {
+    return this.router.url.split('/')[1];
+  }
+
   public navegarPara(rota: string): void {
     this.router.navigateByUrl(this.router.url + '/' + rota)
   }
