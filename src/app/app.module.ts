@@ -1,3 +1,4 @@
+import { NgxsModule, NgxsModuleOptions } from '@ngxs/store';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
@@ -20,6 +21,10 @@ import { SobreComponent } from './rotas/sobre/sobre.component';
 import { CustomCurrencyMaskConfig } from './shared/constants/ngx-mask-config.const';
 import { MatPaginatorPtBrService } from './shared/services/mat-paginator-pt-br.service';
 
+const ngxsOptions: NgxsModuleOptions = {
+  selectorOptions: { injectContainerState: false }
+};
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +42,7 @@ import { MatPaginatorPtBrService } from './shared/services/mat-paginator-pt-br.s
     MatButtonModule,
     MatDividerModule,
     MatIconModule,
+    NgxsModule.forRoot([], ngxsOptions),
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { subscriptSizing: 'dynamic' } },
