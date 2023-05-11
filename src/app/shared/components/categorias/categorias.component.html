@@ -1,0 +1,17 @@
+<div class="categorias">
+    <div class="categorias-slider d-flex align-items-center justify-content-center">
+        <div class="pull-left mt-sm">
+            <mat-icon class="icon-arrow-left pointer icon-button" (click)="scrollLeft()">navigate_before</mat-icon>
+        </div>
+        <div #widgetsContent class="custom-slider-main">
+            <div class="info-box d-flex flex-column align-items-center" *ngFor="let categoria of categorias">
+                <img [src]="categoria.imagem">
+                <div>{{ categoria.nome }}</div>
+            </div>
+        </div>
+        <div class="pull-right mt-sm">
+            <mat-icon class="icon-arrow-right pointer icon-button" (click)="scrollRight()">navigate_next</mat-icon>
+        </div>
+    </div>
+</div>
+  

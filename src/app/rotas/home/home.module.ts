@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
+import { SharedModule } from 'src/app/shared/modules/shared/shared.module';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 
@@ -14,8 +15,8 @@ import { HomeComponent } from './home.component';
     CommonModule,
     HomeRoutingModule,
     MatDividerModule,
-    NgxSkeletonLoaderModule.forRoot(),
-    NgxSkeletonLoaderModule
+    NgxSkeletonLoaderModule,
+    SharedModule
   ]
 })
 export class HomeModule { }

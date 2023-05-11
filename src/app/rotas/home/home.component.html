@@ -22,4 +22,13 @@
             <ngx-skeleton-loader class="mx-5" [count]="ehMobile ? 1 : 2" appearance="circle" [theme]="{'border-radius': '5px', 'height': '300px', 'width': '300px'}"></ngx-skeleton-loader>
         </div>
     </div>
+    <div class="home-page" *ngIf="!loading">
+        <div class="title d-flex justify-content-center">
+            <span>ONLY BABIES</span>
+        </div>
+        <div class="description-divider mt-5 mb-4">
+            <mat-divider></mat-divider>
+        </div>
+        <app-categorias [categorias]="categorias"></app-categorias>
+    </div>
 </div>
