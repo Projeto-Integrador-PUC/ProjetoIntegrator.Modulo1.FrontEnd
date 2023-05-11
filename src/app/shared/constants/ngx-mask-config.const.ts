@@ -1,11 +1,11 @@
-import { CurrencyMaskConfig } from "ng2-currency-mask";
+import { CurrencyMaskConfig } from 'ng2-currency-mask';
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
-    align: "left",
+    align: 'left',
     allowNegative: false,
-    decimal: ",",
+    decimal: ',',
     precision: 2,
-    prefix: "R$ ",
-    suffix: "",
-    thousands: "."
+    prefix: 'R$ ',
+    suffix: '',
+    thousands: '.'
 };

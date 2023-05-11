@@ -24,7 +24,7 @@ export class RotasService {
   }
 
   public navegarPara(rota: string): void {
-    this.router.navigateByUrl(this.router.url + '/' + rota)
+    this.router.navigateByUrl(this.router.url + '/' + rota);
   }
 
   public voltar(): void {
