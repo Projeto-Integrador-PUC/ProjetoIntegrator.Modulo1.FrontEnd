@@ -12,6 +12,7 @@ module.exports = {
         '@typescript-eslint/no-unused-vars': ['warn', { 'argsIgnorePattern': '^_' }],
         '@typescript-eslint/no-empty-function': 'warn',
         '@typescript-eslint/no-unused-expressions': 'warn',
+        '@typescript-eslint/no-namespace': 'off',
         'no-console': 'warn',
         semi: ['error', 'always'],
         quotes: ['error', 'single'],
