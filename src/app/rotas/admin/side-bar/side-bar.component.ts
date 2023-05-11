@@ -13,5 +13,5 @@ export class SideBarComponent {
 
   sideBarItems: SideBarItem[] = [
     { name: 'Produtos', route: 'produtos', icon: 'shopping_bag' },
-  ]
+  ];
 }
