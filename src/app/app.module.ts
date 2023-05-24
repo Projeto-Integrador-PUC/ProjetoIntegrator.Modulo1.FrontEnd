@@ -22,6 +22,8 @@ import { LojaComponent } from './rotas/loja/loja.component';
 import { SobreComponent } from './rotas/sobre/sobre.component';
 import { CustomCurrencyMaskConfig } from './shared/constants/ngx-mask-config.const';
 import { MatPaginatorPtBrService } from './shared/services/mat-paginator-pt-br.service';
+import { LinksComponent } from './shared/components/links/links.component';
+import { FooterComponent } from './footer/footer.component';
 
 const ngxsOptions: NgxsModuleOptions = {
   selectorOptions: { injectContainerState: false }
@@ -36,6 +38,8 @@ registerLocaleData(ptBr);
     LojaComponent,
     AjudaComponent,
     HeaderComponent,
+    LinksComponent,
+    FooterComponent,
   ],
   imports: [
     AdminModule,

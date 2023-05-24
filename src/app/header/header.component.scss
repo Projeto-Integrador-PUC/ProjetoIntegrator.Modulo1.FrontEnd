@@ -5,18 +5,6 @@
     align-items: center;
     justify-content: flex-end;
 
-    .router {
-        text-decoration: none;
-        color: #606060;
-        outline: 0;
-    }
-    
-    .router-divider {
-        border-color: lightgray;
-        border-right-width: 2px !important;
-        margin: 3px 15px;
-    }
-
     .cart-button {
         margin-left: 30px;
         height: 30px;
@@ -28,12 +16,6 @@
 @media screen and (max-width: 800px) {
     .header {
         padding: 10px 5px;
-
-        .routes-wrapper {
-            width: 100%;
-            justify-content: space-evenly;
-            margin: 3px 0;
-        }
 
         .cart {
             margin-right: 5%;
