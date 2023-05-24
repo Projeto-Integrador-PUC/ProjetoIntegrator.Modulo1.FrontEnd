@@ -1,0 +1,29 @@
+.selector {
+	width: 108px;
+	height: 48px;
+	color: #7a7a7a;
+	border-color: #7a7a7a;
+	border-width: 1.5px;
+	border-style: solid;
+	font-family: "Source Sans Pro";
+	font-weight: 300;
+	font-size: 18px;
+	text-align: center;
+
+    .stepper {
+        background: #ebebeb;
+
+        .arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: solid;
+            &:first-child {
+                border-width: 1.5px 0 0.5px 1.5px;
+            }
+            &:last-child {
+                border-width: 0.5px 0 1.5px 1.5px;
+            }
+        }
+    }
+}
