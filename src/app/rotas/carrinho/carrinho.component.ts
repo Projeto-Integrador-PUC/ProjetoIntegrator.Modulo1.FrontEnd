@@ -10,6 +10,8 @@ import { QuantidadeAlteradaEvent } from './interfaces/quantidade-alterada.interf
   styleUrls: ['./carrinho.component.scss']
 })
 export class CarrinhoComponent {
+  protected selectedTabIndex = 0;
+
   constructor(private carrinhoService: CarrinhoService) { }
 
   public get produtos(): IProdutoSelecionavel[] {
@@ -18,5 +20,17 @@ export class CarrinhoComponent {
 
   public alterarQuantidade({ produto, novaQuantidade }: QuantidadeAlteradaEvent): void {
     this.carrinhoService.alterarQuantidade(produto, novaQuantidade);
+  }
+
+  public proximo(): void {
+    this.selectedTabIndex++;
+  }
+
+  public cancelar(): void {
+    if (this.selectedTabIndex === 0) {
+      return;
+    }
+
+    this.selectedTabIndex--;
   }
 }

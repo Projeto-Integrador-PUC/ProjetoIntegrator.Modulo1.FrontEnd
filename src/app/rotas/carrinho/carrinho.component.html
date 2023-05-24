@@ -1,23 +1,40 @@
 <div class="carrinho">
-    <mat-tab-group>
+    <mat-tab-group (click)="$event.preventDefault(); $event.stopPropagation()" [(selectedIndex)]="selectedTabIndex">
         <mat-tab label="1. Carrinho">
-            <div class="title">Carrinho</div>
-            <mat-divider class="mb-3"></mat-divider>
-            <app-conteudo-carrinho *ngIf="produtos && produtos.length > 0"
-            [conteudo]="produtos"
-            (quantidadeAlterada)="alterarQuantidade($event)">
-            </app-conteudo-carrinho>
-            <mat-divider class="my-3"></mat-divider>
-            <ng-template [ngTemplateOutlet]="buttons"></ng-template>
+            <ng-container *ngTemplateOutlet="stepWrapper, context: { $implicit: step1 }"></ng-container>
         </mat-tab>
         <mat-tab label="2. Detalhes de Envio"> Content 2 </mat-tab>
         <mat-tab label="3. Opções de Pagamento"> Content 3 </mat-tab>
     </mat-tab-group>
 </div>
-<ng-template #buttons>
-    <div>
-        <button mat-raised-button class="step-button text-light" color="primary">Próximo</button>
-        <button mat-raised-button class="step-button" color="white">Cancelar</button>
+
+<ng-template #stepWrapper let-step>
+    <ng-container *ngIf="produtos && produtos.length > 0; else emptyCart">
+        <mat-divider class="mb-3"></mat-divider>
+        <ng-container *ngTemplateOutlet="step"></ng-container>
+        <mat-divider class="my-3"></mat-divider>
+        <div>
+            <button mat-raised-button class="step-button text-light" color="primary" (click)="proximo()">Próximo</button>
+            <button mat-raised-button class="step-button" color="white" (click)="cancelar()">Cancelar</button>
+        </div>
+    </ng-container>
+</ng-template>
+
+<ng-template #step1>
+    <div class="title">Carrinho</div>
+    <app-conteudo-carrinho *ngIf="produtos && produtos.length > 0"
+        [conteudo]="produtos"
+        (quantidadeAlterada)="alterarQuantidade($event)">
+    </app-conteudo-carrinho>
+</ng-template>
+
+
+<ng-template #emptyCart>
+    <div class="d-flex align-items-center flex-column p-5">
+        <mat-icon class="cart-icon">production_quantity_limits</mat-icon>
+        <div>Ops!</div>
+        <div>Seu carrinho está vazio!</div>
+        <a routerLink="/loja">Voltar para loja</a>
     </div>
 </ng-template>
   

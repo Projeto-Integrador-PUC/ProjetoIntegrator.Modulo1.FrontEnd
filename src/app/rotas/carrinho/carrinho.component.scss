@@ -11,6 +11,12 @@
     .title {
         font-size: 26px;
     }
+
+    .cart-icon {
+        font-size: 36px;
+        width: 36px;
+        height: 36px;
+    }
 }
 
 :host ::ng-deep {
@@ -18,6 +24,10 @@
         background-color: #EEEEEE;
         padding: 15vh 3vw;
         margin-bottom: 15vh;
+    }
+
+    .mdc-tab, .mdc-tab__content, .mdc-tab__text-label, .mdc-tab-indicator__content {
+        pointer-events: none !important;
     }
 
     .mdc-tab--active {
