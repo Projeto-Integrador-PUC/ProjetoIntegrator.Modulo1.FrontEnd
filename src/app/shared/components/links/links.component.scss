@@ -1,0 +1,19 @@
+.router {
+    text-decoration: none;
+    color: #606060;
+    outline: 0;
+}
+
+.router-divider {
+    border-color: lightgray;
+    border-right-width: 2px !important;
+    margin: 3px 15px;
+}
+
+@media screen and (max-width: 800px) {
+    .routes-wrapper {
+        width: 100%;
+        justify-content: space-evenly;
+        margin: 3px 0;
+    }
+}
