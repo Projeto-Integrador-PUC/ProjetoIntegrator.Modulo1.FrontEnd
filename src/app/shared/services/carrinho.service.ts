@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { BehaviorSubject, Observable, combineLatest, lastValueFrom } from 'rxjs';
 
-import { Produto } from '../interfaces/produto';
+import { IProdutoSelecionavel, Produto } from '../interfaces/produto';
+import { ProdutoSelecionavel } from '../models/produto-selecionavel.model';
 import { Carrinho } from '../stores/carrinho/carrinho.actions';
 import { CarrinhoState, CarrinhoStateModel, carrinhoVazio } from '../stores/carrinho/carrinho.state';
 
@@ -10,15 +11,15 @@ import { CarrinhoState, CarrinhoStateModel, carrinhoVazio } from '../stores/carr
   providedIn: 'root'
 })
 export class CarrinhoService {
-  public carrinho$ = new BehaviorSubject<CarrinhoStateModel>(carrinhoVazio);
-  public produtos$ = new BehaviorSubject<Produto[]>([]);
-  public total$ = new BehaviorSubject<number>(0);
+  private carrinho$ = new BehaviorSubject<CarrinhoStateModel>(carrinhoVazio);
+  private produtos$ = new BehaviorSubject<IProdutoSelecionavel[]>([]);
+  private total$ = new BehaviorSubject<number>(0);
 
   public get carrinho(): CarrinhoStateModel {
     return this.carrinho$.value;
   }
 
-  public get produtos(): Produto[] {
+  public get produtos(): IProdutoSelecionavel[] {
     return this.produtos$.value;
   }
 
@@ -30,7 +31,7 @@ export class CarrinhoService {
   private carrinhoState!: Observable<CarrinhoStateModel>;
 
   @Select(CarrinhoState.produtos)
-  private produtosState!: Observable<Produto[]>;
+  private produtosState!: Observable<IProdutoSelecionavel[]>;
 
   @Select(CarrinhoState.total)
   private totalState!: Observable<number>;
@@ -45,11 +46,27 @@ export class CarrinhoService {
   }
 
   public async adicionarProduto(produto: Produto): Promise<void> {
-    await lastValueFrom<CarrinhoStateModel>(this.store.dispatch(new Carrinho.AdicionarProduto(produto)));
+    const produtoJaAdicionado = this.carrinho.produtos.find((p) => p.id === produto.id);
+
+    if (produtoJaAdicionado) {
+      await this.alterarQuantidade(new ProdutoSelecionavel(produto), produtoJaAdicionado.quantidadeSelecionada + 1);
+    } else {
+      await lastValueFrom<CarrinhoStateModel>(this.store.dispatch(new Carrinho.AdicionarProduto(new ProdutoSelecionavel(produto))));
+    }
   }
 
-  public async removerProduto(produto: Produto): Promise<void> {
-    await lastValueFrom<CarrinhoStateModel>(this.store.dispatch(new Carrinho.RemoverProduto(produto)));
+  public async removerProduto(id: number): Promise<void> {
+    await lastValueFrom<CarrinhoStateModel>(this.store.dispatch(new Carrinho.RemoverProduto(id)));
+  }
+
+  public async alterarQuantidade(produto: IProdutoSelecionavel, novaQuantidade: number): Promise<void> {
+    if (!produto.id) return;
+
+    if (novaQuantidade <= 0) {
+      await this.removerProduto(produto.id);
+    } else {
+      await lastValueFrom<CarrinhoStateModel>(this.store.dispatch(new Carrinho.AlterarQuantidade(produto.id, novaQuantidade)));
+    }
   }
 
   public async limparCarrinho(): Promise<void> {
