@@ -1,1 +1,23 @@
-<p>carrinho works!</p>
+<div class="carrinho">
+    <mat-tab-group>
+        <mat-tab label="1. Carrinho">
+            <div class="title">Carrinho</div>
+            <mat-divider class="mb-3"></mat-divider>
+            <app-conteudo-carrinho *ngIf="produtos && produtos.length > 0"
+            [conteudo]="produtos"
+            (quantidadeAlterada)="alterarQuantidade($event)">
+            </app-conteudo-carrinho>
+            <mat-divider class="my-3"></mat-divider>
+            <ng-template [ngTemplateOutlet]="buttons"></ng-template>
+        </mat-tab>
+        <mat-tab label="2. Detalhes de Envio"> Content 2 </mat-tab>
+        <mat-tab label="3. Opções de Pagamento"> Content 3 </mat-tab>
+    </mat-tab-group>
+</div>
+<ng-template #buttons>
+    <div>
+        <button mat-raised-button class="step-button text-light" color="primary">Próximo</button>
+        <button mat-raised-button class="step-button" color="white">Cancelar</button>
+    </div>
+</ng-template>
+  
