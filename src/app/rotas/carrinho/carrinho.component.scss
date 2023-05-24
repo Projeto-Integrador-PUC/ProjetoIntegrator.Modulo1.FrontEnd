@@ -1,0 +1,60 @@
+.carrinho {
+    border-top: solid 1.5px rgb(96 96 96 / 50%);
+    margin-top: 10px;
+
+    .step-button {
+        width: 200px;
+        border-radius: 1px;
+        margin-right: 10px;
+    }
+
+    .title {
+        font-size: 26px;
+    }
+
+    .cart-icon {
+        font-size: 36px;
+        width: 36px;
+        height: 36px;
+    }
+}
+
+:host ::ng-deep {
+    .mat-mdc-tab-label-container {
+        background-color: #EEEEEE;
+        padding: 15vh 3vw;
+        margin-bottom: 15vh;
+    }
+
+    .mdc-tab, .mdc-tab__content, .mdc-tab__text-label, .mdc-tab-indicator__content {
+        pointer-events: none !important;
+    }
+
+    .mdc-tab--active {
+        .mdc-tab {
+            &__text-label {
+                color: #606060 !important;
+            }
+    
+            &-indicator__content {
+                border-color: #606060;
+            }
+        }
+    }
+
+    .mdc-tab:not(.mdc-tab--active){
+        .mdc-tab {
+            &__text-label {
+                opacity: 0.6;
+            }
+
+            &-indicator__content {
+               opacity: 0.1;
+            }
+        }
+    }
+
+    .mat-mdc-tab-body-wrapper {
+        padding: 0 3vw;
+    }
+}

@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { append, patch, removeItem } from '@ngxs/store/operators';
+import { append, patch, removeItem, updateItem } from '@ngxs/store/operators';
 
-import { Produto } from '../../interfaces/produto';
+import { IProdutoSelecionavel } from '../../interfaces/produto';
+import { ProdutoSelecionavel } from '../../models/produto-selecionavel.model';
 import { Carrinho } from './carrinho.actions';
 
 export interface CarrinhoStateModel {
-  produtos: Produto[];
-  total: number;
+  produtos: IProdutoSelecionavel[];
 }
 
 export const carrinhoVazio = {
-  produtos: [],
-  total: 0
+  produtos: []
 };
 
 @State<CarrinhoStateModel>({
@@ -34,25 +33,32 @@ export class CarrinhoState {
 
   @Selector([CarrinhoState])
   static total(state: CarrinhoStateModel) {
-    return state.total;
+    return state.produtos.reduce((total, produto) => total + (produto.quantidadeSelecionada * produto.preco), 0);
   }
 
   @Action(Carrinho.AdicionarProduto)
   adicionarProduto(contexto: StateContext<CarrinhoStateModel>, { produto }: Carrinho.AdicionarProduto) {
     contexto.setState(
       patch({
-        produtos: append([produto]),
-        total: (total) => total + (produto.preco * produto.quantidade)
+        produtos: append([produto])
+      })
+    );
+  }
+
+  @Action(Carrinho.AlterarQuantidade)
+  aumentarQuantidade(contexto: StateContext<CarrinhoStateModel>, { id, novaQuantidade }: Carrinho.AlterarQuantidade) {
+    contexto.setState(
+      patch({
+        produtos: updateItem<ProdutoSelecionavel>((item) => item.id === id, patch({ quantidadeSelecionada: novaQuantidade }))
       })
     );
   }
 
   @Action(Carrinho.RemoverProduto)
-  removerProduto(contexto: StateContext<CarrinhoStateModel>, { produto }: Carrinho.RemoverProduto) {
+  removerProduto(contexto: StateContext<CarrinhoStateModel>, { id }: Carrinho.RemoverProduto) {
     contexto.setState(
       patch({
-        produtos: removeItem<Produto>((item) => item.id === produto.id),
-        total: (total) => total - (produto.preco * produto.quantidade)
+        produtos: removeItem<ProdutoSelecionavel>((item) => item.id === id)
       })
     );
   }

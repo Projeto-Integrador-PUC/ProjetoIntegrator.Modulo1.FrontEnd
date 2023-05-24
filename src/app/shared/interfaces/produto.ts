@@ -9,3 +9,7 @@ export interface Produto {
     imagem: string;
     destaque: boolean;
 }
+
+export interface IProdutoSelecionavel extends Omit<Produto, 'quantidade' | 'image'> {
+    quantidadeSelecionada: number;
+}
