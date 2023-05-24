@@ -1,0 +1,14 @@
+<div class="conteudo-carrinho">
+    <div *ngFor="let produto of conteudo" class="d-flex align-items-center">
+        <div class="image-wrapper">
+            <img src="{{ produto.imagem }}" alt="{{ produto.nome }}" class="image">
+        </div>
+        <div class="text-wrapper">
+            <div>{{ produto.nome.toUpperCase() }}</div>
+            <div>{{ produto.preco | currency: 'BRL' }}</div>
+        </div>
+        <div class="selector">
+            <app-seletor-quantidade [quantidadeInicial]="produto.quantidadeSelecionada" (alterou)="alterarQuantidade($event, produto)"></app-seletor-quantidade>
+        </div>
+    </div>
+</div>
