@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { Categoria } from 'src/app/shared/interfaces/categoria';
+import { Produto } from 'src/app/shared/interfaces/produto';
 import { TelaService } from 'src/app/shared/services/tela.service';
 import { HomeService } from './home.service';
 
@@ -12,6 +13,7 @@ import { HomeService } from './home.service';
 export class HomeComponent {
 
   public categorias!: Categoria[];
+  public produtos!: Produto[];
 
   constructor(
     private homeService: HomeService,
@@ -30,5 +32,9 @@ export class HomeComponent {
     this.homeService
       .obterCategorias()
       .subscribe(res => this.categorias = res);
+    
+    this.homeService
+      .obterProdutosDestaque()
+      .subscribe(res => this.produtos = res);
   }
 }

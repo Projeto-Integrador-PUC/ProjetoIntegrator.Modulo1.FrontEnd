@@ -15,15 +15,15 @@ import { provideNgxMask } from 'ngx-mask';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { AdminModule } from './rotas/admin/admin.module';
 import { AjudaComponent } from './rotas/ajuda/ajuda.component';
 import { LojaComponent } from './rotas/loja/loja.component';
 import { SobreComponent } from './rotas/sobre/sobre.component';
+import { LinksComponent } from './shared/components/links/links.component';
 import { CustomCurrencyMaskConfig } from './shared/constants/ngx-mask-config.const';
 import { MatPaginatorPtBrService } from './shared/services/mat-paginator-pt-br.service';
-import { LinksComponent } from './shared/components/links/links.component';
-import { FooterComponent } from './footer/footer.component';
 
 const ngxsOptions: NgxsModuleOptions = {
   selectorOptions: { injectContainerState: false }

@@ -1,4 +1,4 @@
-.categorias {
+.items {
 
     .description-divider {
         padding: 0 40%;
@@ -32,10 +32,15 @@
         height: 36px;
         font-size: 36px;
     }
+
+    .disabled {
+        opacity: 0.5;
+        pointer-events: none;
+    }
 }
 
 @media screen and (max-width: 800px) {
-    .categorias {
+    .items {
         .custom-slider-main {
             max-width: 210px;
         }

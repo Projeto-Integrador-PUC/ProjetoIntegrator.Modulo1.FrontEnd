@@ -29,7 +29,12 @@
         <div class="description-divider mt-5 mb-4">
             <mat-divider></mat-divider>
         </div>
-        <app-categorias [categorias]="categorias"></app-categorias>
+        <app-carousel [items]="categorias"></app-carousel>
+        <mat-divider class="my-4"></mat-divider>
+        <div class="title d-flex justify-content-center">
+            <span>PRODUTOS EM DESTAQUE</span>
+        </div>
+        <app-carousel [items]="produtos"></app-carousel>
         <mat-divider class="my-4"></mat-divider>
         <div class="about-us">
             <div class="about-us-title">Sobre Nós</div>

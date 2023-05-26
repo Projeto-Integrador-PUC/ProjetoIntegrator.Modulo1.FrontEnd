@@ -1,12 +1,12 @@
-<div class="categorias">
-    <div class="categorias-slider d-flex align-items-center justify-content-center">
+<div class="items">
+    <div class="items-slider d-flex align-items-center justify-content-center">
         <div class="pull-left mt-sm">
             <mat-icon class="icon-arrow-left pointer icon-button" (click)="scrollLeft()">navigate_before</mat-icon>
         </div>
         <div #widgetsContent class="custom-slider-main">
-            <div class="info-box d-flex flex-column align-items-center" *ngFor="let categoria of categorias">
-                <img [src]="categoria.imagem">
-                <div>{{ categoria.nome }}</div>
+            <div class="info-box d-flex flex-column align-items-center" *ngFor="let item of items" (click)="itemClicked.emit(item)">
+                <img [src]="item.imagem">
+                <div *ngIf="item.nome">{{ item.nome }}</div>
             </div>
         </div>
         <div class="pull-right mt-sm">
@@ -14,4 +14,3 @@
         </div>
     </div>
 </div>
-  

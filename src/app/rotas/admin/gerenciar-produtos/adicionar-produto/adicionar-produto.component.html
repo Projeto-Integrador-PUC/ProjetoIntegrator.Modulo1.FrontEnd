@@ -63,13 +63,9 @@
                 <image-cropper
                     class="mt-1"
                     [imageChangedEvent]="alteracaoImagem"
-                    [maintainAspectRatio]="true"
+                    [maintainAspectRatio]="false"
                     format="png"
                     (imageCropped)="recortarImagem($event)"
-                    [cropperMinWidth]="800"
-                    [cropperMinHeight]="800"
-                    [cropperMaxWidth]="800"
-                    [cropperMaxHeight]="800"
                 ></image-cropper>
 
                 <img [src]="imagem" />
