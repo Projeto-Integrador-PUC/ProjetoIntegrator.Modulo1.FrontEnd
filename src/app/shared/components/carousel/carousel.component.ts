@@ -32,7 +32,8 @@ export class CarouselComponent<T extends { imagem: string, nome?: string }> {
   }
 
   public scrollRight() {
-    if (this.widgetsContent.nativeElement.scrollLeft == this.offsetWidth) {
+    const currentScrollLeft = Math.round(this.widgetsContent.nativeElement.scrollLeft);
+    if (currentScrollLeft == this.offsetWidth) {
       this.widgetsContent.nativeElement.scrollLeft = 0;
     } else {
       this.widgetsContent.nativeElement.scrollLeft += this.defaultImageWidth;
