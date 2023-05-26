@@ -3,12 +3,13 @@ import { NgModule } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { NgxsModule } from '@ngxs/store';
 
+import { CarouselComponent } from '../../components/carousel/carousel.component';
 import { CategoriasComponent } from '../../components/categorias/categorias.component';
 import { SeletorQuantidadeComponent } from '../../components/seletor-quantidade/seletor-quantidade.component';
 import { CarrinhoState } from '../../stores/carrinho/carrinho.state';
 
 @NgModule({
-  declarations: [ CategoriasComponent, SeletorQuantidadeComponent ],
+  declarations: [ CategoriasComponent, SeletorQuantidadeComponent, CarouselComponent ],
   imports: [
     CommonModule,
     MatIconModule,
@@ -17,6 +18,7 @@ import { CarrinhoState } from '../../stores/carrinho/carrinho.state';
   exports: [
     CategoriasComponent,
     SeletorQuantidadeComponent,
+    CarouselComponent,
   ]
 })
 export class SharedModule { }
