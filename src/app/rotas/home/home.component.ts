@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Categoria } from 'src/app/shared/interfaces/categoria';
 import { Produto } from 'src/app/shared/interfaces/produto';
 import { TelaService } from 'src/app/shared/services/tela.service';
-import { HomeService } from './home.service';
+import { ProdutosService } from '../../shared/services/produtos.service';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +16,7 @@ export class HomeComponent {
   public produtos!: Produto[];
 
   constructor(
-    private homeService: HomeService,
+    private homeService: ProdutosService,
     private telaService: TelaService
   ) { }
 

@@ -1,0 +1,16 @@
+<div class="detalhes-produto" *ngIf="produto">
+    <div class="d-inline-flex w-100">
+        <img class="image" src="{{ produto.imagem }}" alt="{{ produto.nome }}">
+        <div class="d-flex flex-column align-items-left px-4 py-5">
+            <div class="name">{{ produto.nome }}</div>
+            <mat-divider class="my-5"></mat-divider>
+            <div class="ml-auto price">{{ produto.preco | currency:'BRL' }}</div>
+            <mat-divider class="my-5"></mat-divider>
+            <div class="description">{{ produto.descricao }}</div>
+            <mat-divider class="my-5 w-25"></mat-divider>
+            <button mat-raised-button color="primary" class="add-button w-25" (click)="adicionarAoCarrinho()">
+                Adicionar ao carrinho
+            </button>
+        </div>
+    </div>
+</div>
