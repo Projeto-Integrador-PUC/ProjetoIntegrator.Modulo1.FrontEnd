@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { BehaviorSubject, Observable, combineLatest, lastValueFrom } from 'rxjs';
 
+import { MatDialog } from '@angular/material/dialog';
+import { DialogProdutoAdicionadoComponent } from '../components/dialog-produto-adicionado/dialog-produto-adicionado.component';
 import { IProdutoSelecionavel, Produto } from '../interfaces/produto';
 import { ProdutoSelecionavel } from '../models/produto-selecionavel.model';
 import { Carrinho } from '../stores/carrinho/carrinho.actions';
 import { CarrinhoState, CarrinhoStateModel, carrinhoVazio } from '../stores/carrinho/carrinho.state';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class CarrinhoService {
   private carrinho$ = new BehaviorSubject<CarrinhoStateModel>(carrinhoVazio);
   private produtos$ = new BehaviorSubject<IProdutoSelecionavel[]>([]);
@@ -36,7 +36,10 @@ export class CarrinhoService {
   @Select(CarrinhoState.total)
   private totalState!: Observable<number>;
 
-  constructor(private store: Store) {
+  constructor(
+    private store: Store,
+    private dialog: MatDialog,
+  ) {
     combineLatest([this.carrinhoState, this.produtosState, this.totalState])
       .subscribe(([carrinho, produtos, total]) => {
         this.carrinho$.next(carrinho);
@@ -71,5 +74,9 @@ export class CarrinhoService {
 
   public async limparCarrinho(): Promise<void> {
     await lastValueFrom<CarrinhoStateModel>(this.store.dispatch(new Carrinho.LimparCarrinho()));
+  }
+
+  public abrirDialogProdutoAdicionado(): void {
+    this.dialog.open(DialogProdutoAdicionadoComponent);
   }
 }
