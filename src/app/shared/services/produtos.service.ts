@@ -10,7 +10,7 @@ import { Resposta } from 'src/app/shared/interfaces/resposta';
 @Injectable({
   providedIn: 'root'
 })
-export class HomeService {
+export class ProdutosService {
 
   private _loading = new BehaviorSubject<boolean>(false);
 
@@ -25,7 +25,7 @@ export class HomeService {
     return this.http.get<Resposta<Categoria[]>>(API + '/produtos/categorias')
       .pipe(
         tap(resposta => {
-          if (!resposta.sucesso) {
+          if (!resposta.sucesso || !resposta.dados) {
             throw new Error(resposta.mensagem);
           }
         }),
@@ -39,11 +39,25 @@ export class HomeService {
     return this.http.get<Resposta<Produto[]>>(API + '/produtos/destaques')
       .pipe(
         tap(resposta => {
-          if (!resposta.sucesso) {
+          if (!resposta.sucesso || !resposta.dados) {
             throw new Error(resposta.mensagem);
           }
         }),
         map(resposta => resposta.dados ?? []),
+        tap(() => this._loading.next(false))
+      );
+  }
+
+  public obterDetalhesProduto(id: number): Observable<Produto> {
+    this._loading.next(true);
+    return this.http.get<Resposta<Produto>>(API + '/produtos/' + id)
+      .pipe(
+        tap(resposta => {
+          if (!resposta.sucesso || !resposta.dados) {
+            throw new Error(resposta.mensagem);
+          }
+        }),
+        map(resposta => resposta.dados),
         tap(() => this._loading.next(false))
       );
   }
