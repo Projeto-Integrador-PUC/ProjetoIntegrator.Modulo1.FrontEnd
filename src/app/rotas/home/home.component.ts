@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+import { Router } from '@angular/router';
 import { Categoria } from 'src/app/shared/interfaces/categoria';
 import { Produto } from 'src/app/shared/interfaces/produto';
 import { TelaService } from 'src/app/shared/services/tela.service';
@@ -17,7 +18,8 @@ export class HomeComponent {
 
   constructor(
     private homeService: ProdutosService,
-    private telaService: TelaService
+    private telaService: TelaService,
+    private router: Router,
   ) { }
 
   get ehMobile(): boolean {
@@ -36,5 +38,9 @@ export class HomeComponent {
     this.homeService
       .obterProdutosDestaque()
       .subscribe(res => this.produtos = res);
+  }
+
+  public navegarParaDetalhesDoProduto(produto: Produto): void {
+    this.router.navigate(['/produtos', produto.id]);
   }
 }

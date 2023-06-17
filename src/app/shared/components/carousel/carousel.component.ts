@@ -23,7 +23,7 @@ export class CarouselComponent<T extends { imagem: string, nome?: string }> {
     }
   }
 
-  public scrollLeft() {
+  public scrollLeft(): void {
     if (this.widgetsContent.nativeElement.scrollLeft == 0) {
       this.widgetsContent.nativeElement.scrollLeft = this.offsetWidth;
     } else {
@@ -31,7 +31,7 @@ export class CarouselComponent<T extends { imagem: string, nome?: string }> {
     }
   }
 
-  public scrollRight() {
+  public scrollRight(): void {
     const currentScrollLeft = Math.round(this.widgetsContent.nativeElement.scrollLeft);
     if (currentScrollLeft == this.offsetWidth) {
       this.widgetsContent.nativeElement.scrollLeft = 0;
