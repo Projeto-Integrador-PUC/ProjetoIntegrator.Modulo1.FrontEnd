@@ -1,0 +1,39 @@
+<div class="calcular-frete-dialog">
+    <div class="header d-flex justify-content-between align-items-center">
+        <div class="title"><strong>Calcular frete</strong></div>
+        <div>
+            <button mat-icon-button (click)="fechar()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </div>
+    <div class="mb-3">
+        <mat-form-field appearance="outline" class="w-100">
+            <mat-label>CEP</mat-label>
+            <input matInput mask="99999-999" [(ngModel)]="cep" (ngModelChange)="validarCep($event)">
+        </mat-form-field>
+    </div>
+    <div *ngIf="entrega.prazos && !entrega.calculando">
+        <mat-radio-group [(ngModel)]="entregaEscolhida">
+            <div class="mb-3" *ngFor="let prazo of entrega.prazos">
+                <mat-divider class="my-3"></mat-divider>
+                <mat-radio-button color="primary" [value]="prazo">
+                    <div class="d-flex justify-content-between">
+                        <div class="font-medium">{{ prazo.nome }}</div>
+                        <div class="font-medium">{{ prazo.valor | currency: 'BRL' }}</div>
+                    </div>
+                    <span *ngIf="prazo.prazo > 1" class="prazo">até {{ prazo.prazo }} dias úteis.</span>
+                    <span *ngIf="prazo.prazo == 1" class="prazo">até {{ prazo.prazo }} dia útil.</span>
+                </mat-radio-button>
+            </div>
+        </mat-radio-group>
+        <div *ngIf="exibirCepInvalido" class="error-message">Cep inválido.</div>
+    </div>
+    <div *ngIf="entrega.calculando" class="d-flex justify-content-center mb-4">
+        <mat-spinner [diameter]="40"></mat-spinner>
+    </div>
+    <div class="d-flex">
+        <button mat-raised-button color="white" class="me-2" (click)="fechar()">Cancelar</button>
+        <button mat-raised-button color="primary" (click)="confirmar()" class="white-text" [disabled]="!entregaEscolhida">Confirmar frete</button>
+    </div>
+</div>

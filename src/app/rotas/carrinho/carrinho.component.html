@@ -1,20 +1,25 @@
 <div class="carrinho">
-    <mat-tab-group (click)="$event.preventDefault(); $event.stopPropagation()" [(selectedIndex)]="selectedTabIndex">
+    <mat-tab-group (click)="$event.preventDefault(); $event.stopPropagation()" [(selectedIndex)]="selectedTabIndex" dynamicHeight>
         <mat-tab label="1. Carrinho">
             <ng-container *ngTemplateOutlet="stepWrapper, context: { $implicit: step1 }"></ng-container>
         </mat-tab>
-        <mat-tab label="2. Detalhes de Envio"> Content 2 </mat-tab>
+        <mat-tab label="2. Detalhes de Envio"> 
+            <ng-container *ngTemplateOutlet="stepWrapper, context: { $implicit: step2 }"></ng-container>
+        </mat-tab>
         <mat-tab label="3. Opções de Pagamento"> Content 3 </mat-tab>
     </mat-tab-group>
 </div>
 
 <ng-template #stepWrapper let-step>
     <ng-container *ngIf="produtos && produtos.length > 0; else emptyCart">
-        <mat-divider class="mb-3"></mat-divider>
-        <ng-container *ngTemplateOutlet="step"></ng-container>
-        <mat-divider class="my-3"></mat-divider>
-        <div>
-            <button mat-raised-button class="step-button text-light" color="primary" (click)="proximo()">Próximo</button>
+        <div class="d-flex">
+            <div class="w-100">
+                <ng-container *ngTemplateOutlet="step"></ng-container>
+            </div>
+            <app-resumo [entrega]="entrega" [subtotal]="total" (calcularEntrega)="abrirDialogCalcularFrete()"></app-resumo>
+        </div>
+        <div class="mb-3">
+            <button mat-raised-button class="step-button text-light" color="primary" (click)="proximo()" [disabled]="desabilitarBotaoProximo">Próximo</button>
             <button mat-raised-button class="step-button" color="white" (click)="cancelar()">Cancelar</button>
         </div>
     </ng-container>
@@ -22,10 +27,17 @@
 
 <ng-template #step1>
     <div class="title">Carrinho</div>
+    <mat-divider class="my-3"></mat-divider>
     <app-conteudo-carrinho *ngIf="produtos && produtos.length > 0"
         [conteudo]="produtos"
         (quantidadeAlterada)="alterarQuantidade($event)">
     </app-conteudo-carrinho>
+</ng-template>
+
+<ng-template #step2>
+    <div class="title">Detalhes de envio</div>
+    <mat-divider class="my-3"></mat-divider>
+    <app-detalhes-envio [entrega]="entrega" (validacao)="validarSegundaPagina($event)"></app-detalhes-envio>
 </ng-template>
 
 

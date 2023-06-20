@@ -6,25 +6,45 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { NgxsModule } from '@ngxs/store';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatRadioModule } from '@angular/material/radio';
+import { NgxMaskDirective } from 'ngx-mask';
+
 import { SharedModule } from 'src/app/shared/modules/shared/shared.module';
 import { CarrinhoState } from 'src/app/shared/stores/carrinho/carrinho.state';
+import { CalcularFreteDialogComponent } from './calcular-frete-dialog/calcular-frete-dialog.component';
 import { CarrinhoRoutingModule } from './carrinho-routing.module';
 import { CarrinhoComponent } from './carrinho.component';
 import { ConteudoCarrinhoComponent } from './conteudo-carrinho/conteudo-carrinho.component';
+import { DetalhesEnvioComponent } from './detalhes-envio/detalhes-envio.component';
+import { ResumoComponent } from './resumo/resumo.component';
 
 @NgModule({
   declarations: [
     CarrinhoComponent,
-    ConteudoCarrinhoComponent
+    ConteudoCarrinhoComponent,
+    DetalhesEnvioComponent,
+    ResumoComponent,
+    CalcularFreteDialogComponent
   ],
   imports: [
     CarrinhoRoutingModule,
     CommonModule,
+    FormsModule,
     MatButtonModule,
     MatDividerModule,
+    MatFormFieldModule,
     MatIconModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
     MatTabsModule,
+    NgxMaskDirective,
     NgxsModule.forFeature([CarrinhoState]),
+    ReactiveFormsModule,
     SharedModule,
   ],
 })

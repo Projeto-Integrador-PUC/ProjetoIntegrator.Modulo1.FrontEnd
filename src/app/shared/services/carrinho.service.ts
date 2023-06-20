@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { BehaviorSubject, Observable, combineLatest, lastValueFrom } from 'rxjs';
+import { CalcularFreteDialogComponent } from './../../rotas/carrinho/calcular-frete-dialog/calcular-frete-dialog.component';
 
 import { MatDialog } from '@angular/material/dialog';
+import { Entrega } from 'src/app/rotas/carrinho/models/entrega/entrega';
 import { DialogProdutoAdicionadoComponent } from '../components/dialog-produto-adicionado/dialog-produto-adicionado.component';
 import { IProdutoSelecionavel, Produto } from '../interfaces/produto';
 import { ProdutoSelecionavel } from '../models/produto-selecionavel.model';
@@ -14,6 +16,7 @@ export class CarrinhoService {
   private carrinho$ = new BehaviorSubject<CarrinhoStateModel>(carrinhoVazio);
   private produtos$ = new BehaviorSubject<IProdutoSelecionavel[]>([]);
   private total$ = new BehaviorSubject<number>(0);
+  private entrega$ = new BehaviorSubject<Entrega>(new Entrega());
 
   public get carrinho(): CarrinhoStateModel {
     return this.carrinho$.value;
@@ -25,6 +28,10 @@ export class CarrinhoService {
 
   public get total(): number {
     return this.total$.value;
+  }
+
+  public get entrega(): Entrega {
+    return this.entrega$.value;
   }
 
   @Select(CarrinhoState.carrinho)
@@ -78,5 +85,15 @@ export class CarrinhoService {
 
   public abrirDialogProdutoAdicionado(): void {
     this.dialog.open(DialogProdutoAdicionadoComponent);
+  }
+
+  public async calcularFretes(endereco: string): Promise<void> {
+    await this.entrega$.value.calcularFrete(endereco);
+  }
+
+  public abrirDialogCalcularFrete(): void {
+    this.dialog.open(CalcularFreteDialogComponent, {
+      data: this.entrega$.value,
+    });
   }
 }
