@@ -1,0 +1,33 @@
+.calcular-frete-dialog {
+    padding: 30px;
+    
+    .header {
+        margin-bottom: 6px;
+
+        .title {
+            font-size: 20px;
+            font-weight: bolder;
+        }
+    }
+
+    .prazo {
+        font-size: 15px;
+    }
+
+    .error-message {
+        margin-bottom: 1rem;
+        display: flex;
+        justify-content: center;
+        color: indianred;
+    }
+}
+
+:host ::ng-deep {
+    .mdc-form-field {
+        width: 100%;
+        
+        label {
+            width: 100%;
+        }
+    }
+}

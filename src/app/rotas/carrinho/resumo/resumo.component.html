@@ -1,0 +1,22 @@
+<div class="ms-5 resumo">
+    <div class="font-big">Resumo</div>
+    <mat-divider class="my-3"></mat-divider>
+    <div class="d-flex my-1 justify-content-between">
+        <strong><div class="me-5 font-medium">SUBTOTAL</div></strong>
+        <strong><div class="font-medium">{{ subtotal  | currency: 'BRL' }}</div></strong>
+    </div>
+    <div class="d-flex my-1 justify-content-between">
+        <strong><div class="me-5 font-medium">ENTREGA</div></strong>
+        <ng-container *ngIf="entregaEscolhida">
+            <strong><div class="font-medium clickable" (click)="calcularEntrega.emit()">{{ entregaEscolhida.valor  | currency: 'BRL' }}</div></strong>
+        </ng-container>
+        <ng-container *ngIf="!entregaEscolhida">
+            <strong><div class="font-medium clickable" (click)="calcularEntrega.emit()">Calcular</div></strong>
+        </ng-container>
+    </div>
+    <mat-divider class="my-3"></mat-divider>
+    <div class="d-flex my-1 justify-content-between">
+        <strong><div class="me-5 font-medium">TOTAL</div></strong>
+        <strong><div class="font-medium">{{ subtotal + (entregaEscolhida?.valor ?? 0) | currency: 'BRL' }}</div></strong>
+    </div>
+</div>
