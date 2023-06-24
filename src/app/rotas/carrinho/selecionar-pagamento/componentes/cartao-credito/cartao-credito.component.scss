@@ -1,0 +1,20 @@
+.cartao-credito {
+    padding: 30px 15px;
+
+    .big-input {
+        font-size: 40px;
+        caret-color: transparent;
+    }
+
+    .big-icon {
+        font-size: 36px;
+        width: 36px;
+        height: 36px;
+    }
+}
+
+:host ::ng-deep {
+    .mat-mdc-form-field-infix {
+        padding: 0 !important;
+    }
+}

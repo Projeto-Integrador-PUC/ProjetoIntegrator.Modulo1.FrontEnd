@@ -1,12 +1,14 @@
 <div class="carrinho">
-    <mat-tab-group (click)="$event.preventDefault(); $event.stopPropagation()" [(selectedIndex)]="selectedTabIndex" dynamicHeight>
+    <mat-tab-group [(selectedIndex)]="selectedTabIndex" dynamicHeight>
         <mat-tab label="1. Carrinho">
             <ng-container *ngTemplateOutlet="stepWrapper, context: { $implicit: step1 }"></ng-container>
         </mat-tab>
         <mat-tab label="2. Detalhes de Envio"> 
             <ng-container *ngTemplateOutlet="stepWrapper, context: { $implicit: step2 }"></ng-container>
         </mat-tab>
-        <mat-tab label="3. Opções de Pagamento"> Content 3 </mat-tab>
+        <mat-tab label="3. Opções de Pagamento">
+            <ng-container *ngTemplateOutlet="stepWrapper, context: { $implicit: step3 }"></ng-container>
+        </mat-tab>
     </mat-tab-group>
 </div>
 
@@ -19,7 +21,7 @@
             <app-resumo [entrega]="entrega" [subtotal]="total" (calcularEntrega)="abrirDialogCalcularFrete()"></app-resumo>
         </div>
         <div class="mb-3">
-            <button mat-raised-button class="step-button text-light" color="primary" (click)="proximo()" [disabled]="desabilitarBotaoProximo">Próximo</button>
+            <button mat-raised-button class="step-button text-light" color="primary" (click)="proximo()" [disabled]="false">Próximo</button>
             <button mat-raised-button class="step-button" color="white" (click)="cancelar()">Cancelar</button>
         </div>
     </ng-container>
@@ -38,6 +40,12 @@
     <div class="title">Detalhes de envio</div>
     <mat-divider class="my-3"></mat-divider>
     <app-detalhes-envio [entrega]="entrega" (validacao)="validarSegundaPagina($event)"></app-detalhes-envio>
+</ng-template>
+
+<ng-template #step3>
+    <div class="title">Método de pagamento</div>
+    <mat-divider class="my-3"></mat-divider>
+    <app-selecionar-pagamento></app-selecionar-pagamento>
 </ng-template>
 
 

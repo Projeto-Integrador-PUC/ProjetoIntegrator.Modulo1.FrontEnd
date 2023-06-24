@@ -1,0 +1,48 @@
+<div class="cartao-credito">
+    <form [formGroup]="formularioCartaoCredito">
+        <div class="d-flex mb-5">
+            <div class="w-100">
+                <mat-form-field appearance="outline" class="w-100">
+                    <input class="big-input"
+                    matInput
+                    formControlName="numeroCartao"
+                    placeholder="0000   0000    0000   0000"
+                    mask="0000   0000    0000   0000">
+                    <mat-icon matSuffix class="big-icon">credit_card</mat-icon>
+                </mat-form-field>
+                <mat-error *ngIf="numeroCartaoInvalido">
+                    <span class="error-message">Número do cartão inválido</span>
+                </mat-error>
+            </div>
+            <div class="w-100 d-flex justify-content-end">
+                <div class="me-4">
+                    <mat-form-field appearance="outline">
+                        <input class="big-input" matInput formControlName="vencimento" placeholder="MM/AA" mask="00/00">
+                        <mat-icon matSuffix class="big-icon">calendar_today</mat-icon>
+                    </mat-form-field>
+                    <mat-error *ngIf="vencimentoInvalido">
+                        <span class="error-message">Data de vencimento inválida</span>
+                    </mat-error>
+                </div>
+                <div>
+                    <mat-form-field appearance="outline">
+                        <input class="big-input" matInput formControlName="cvv" placeholder="CVV" mask="000">
+                        <mat-icon matSuffix class="big-icon">info</mat-icon>
+                    </mat-form-field>
+                    <mat-error *ngIf="cvvInvalido">
+                        <span class="error-message">CVV inválido</span>
+                    </mat-error>
+                </div>
+            </div>
+        </div>
+        <div>
+            <mat-form-field appearance="outline" class="w-100">
+                <input class="big-input" matInput formControlName="nomeTitular" placeholder="Nome do titular">
+                <mat-icon matSuffix class="big-icon">person</mat-icon>
+            </mat-form-field>
+            <mat-error *ngIf="nomeTitularInvalido">
+                <span class="error-message">Nome do titular inválido</span>
+            </mat-error>
+        </div>
+    </form>
+</div>

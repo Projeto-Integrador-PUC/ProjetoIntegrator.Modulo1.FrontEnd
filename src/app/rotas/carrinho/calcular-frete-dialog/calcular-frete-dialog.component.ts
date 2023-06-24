@@ -20,7 +20,6 @@ export class CalcularFreteDialogComponent implements OnInit {
     ) {}
   
   ngOnInit(): void {
-    console.log('inited');
     if (this.entrega.endereco) {
       this.cep = this.entrega.endereco.cep;
       this.validarCep(this.cep);
@@ -29,10 +28,10 @@ export class CalcularFreteDialogComponent implements OnInit {
 
   public validarCep(cep: string): void {
     this.exibirCepInvalido = false;
-    console.log(cep);
     if (cep.length === 8) {
-      this.entrega.calcularFrete(this.cep).catch(() => {
+      this.entrega.calcularFrete(this.cep).catch((err) => {
         this.exibirCepInvalido = true;
+        throw new Error(err);
       });
     }
   }
