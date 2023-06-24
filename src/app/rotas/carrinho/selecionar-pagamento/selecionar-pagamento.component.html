@@ -1,0 +1,24 @@
+<div class="selecionar-pagamento">
+    <mat-radio-group [(ngModel)]="pagamentoEscolhido">
+        <div *ngFor="let pagamento of opcoesPagamento">
+            <div class="bordered">
+                <mat-radio-button [value]="pagamento" color="primary">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <div class="font-medium">{{ pagamento.nome }}</div>
+                            <div class="description">{{ pagamento.descricao }}</div>
+                        </div>
+                        <div><mat-icon class="big-icon">{{ pagamento.icone }}</mat-icon></div>
+                    </div>
+                </mat-radio-button>
+                <div *ngIf="pagamento === pagamentoEscolhido" @openClose>
+                    <ng-container [ngSwitch]="pagamento.id">
+                        <app-cartao-credito *ngSwitchCase="1"></app-cartao-credito>
+                        <app-pix *ngSwitchCase="2"></app-pix>
+                    </ng-container>
+                </div>
+            </div>
+            <mat-divider class="my-4"></mat-divider>
+        </div>
+    </mat-radio-group>
+</div>

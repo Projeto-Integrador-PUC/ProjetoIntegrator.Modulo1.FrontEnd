@@ -65,7 +65,7 @@ export class DetalhesEnvioComponent {
   public cepDigitado(): void {
     const cep = this.formulario.get('cep')?.value;
     if (cep?.length === 8) {
-      this.entrega.obterEndereco(cep);
+      this.entrega.obterEndereco(cep).then(() => this.entrega.resetarPrecoPrazos());
     }
   }
 }

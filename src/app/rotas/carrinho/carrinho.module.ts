@@ -21,6 +21,9 @@ import { CarrinhoComponent } from './carrinho.component';
 import { ConteudoCarrinhoComponent } from './conteudo-carrinho/conteudo-carrinho.component';
 import { DetalhesEnvioComponent } from './detalhes-envio/detalhes-envio.component';
 import { ResumoComponent } from './resumo/resumo.component';
+import { CartaoCreditoComponent } from './selecionar-pagamento/componentes/cartao-credito/cartao-credito.component';
+import { PixComponent } from './selecionar-pagamento/componentes/pix/pix.component';
+import { SelecionarPagamentoComponent } from './selecionar-pagamento/selecionar-pagamento.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { ResumoComponent } from './resumo/resumo.component';
     ConteudoCarrinhoComponent,
     DetalhesEnvioComponent,
     ResumoComponent,
-    CalcularFreteDialogComponent
+    CalcularFreteDialogComponent,
+    SelecionarPagamentoComponent,
+    CartaoCreditoComponent,
+    PixComponent
   ],
   imports: [
     CarrinhoRoutingModule,
