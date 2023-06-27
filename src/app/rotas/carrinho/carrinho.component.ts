@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
 import { IProdutoSelecionavel } from 'src/app/shared/interfaces/produto';
 import { CarrinhoService } from 'src/app/shared/services/carrinho.service';
+import { DetalhesEnvioComponent } from './detalhes-envio/detalhes-envio.component';
 import { QuantidadeAlteradaEvent } from './interfaces/quantidade-alterada.interface';
 import { Entrega } from './models/entrega/entrega';
+import { SelecionarPagamentoComponent } from './selecionar-pagamento/selecionar-pagamento.component';
 
 @Component({
   selector: 'app-carrinho',
@@ -11,11 +13,14 @@ import { Entrega } from './models/entrega/entrega';
   styleUrls: ['./carrinho.component.scss']
 })
 export class CarrinhoComponent {
+  @ViewChild(DetalhesEnvioComponent) detalhesEnvio!: DetalhesEnvioComponent;
+  @ViewChild(SelecionarPagamentoComponent) detalhesPagamento!: SelecionarPagamentoComponent;
+  
   protected selectedTabIndex = 0;
+  protected finalizando = false;
 
   private primeiraPaginaCompleta = true;
   private segundaPaginaCompleta = false;
-  private terceiraPaginaCompleta = false;
 
   constructor(private carrinhoService: CarrinhoService) { }
 
@@ -26,7 +31,7 @@ export class CarrinhoComponent {
       case 1:
         return !this.segundaPaginaCompleta;
       case 2:
-        return !this.terceiraPaginaCompleta;
+        return this.terceiraPaginaCompleta;
       default:
         return true;
     }
@@ -44,11 +49,16 @@ export class CarrinhoComponent {
     return this.carrinhoService.entrega;
   }
 
+  public get terceiraPaginaCompleta(): boolean {
+    return this.detalhesPagamento && this.detalhesPagamento.valido;
+  }
+
   public alterarQuantidade({ produto, novaQuantidade }: QuantidadeAlteradaEvent): void {
     this.carrinhoService.alterarQuantidade(produto, novaQuantidade);
   }
 
   public proximo(): void {
+    this.atualizarEstadoDoCarrinho(this.selectedTabIndex);
     this.selectedTabIndex++;
   }
 
@@ -60,19 +70,34 @@ export class CarrinhoComponent {
     this.selectedTabIndex--;
   }
 
-  public calcularFretes(endereco: string): void {
-    this.carrinhoService.calcularFretes(endereco);
-  }
-
   public abrirDialogCalcularFrete(): void {
     this.carrinhoService.abrirDialogCalcularFrete();
   }
 
-  public validarSegundaPagina(valido: boolean): void {
+  protected validarSegundaPagina(valido: boolean): void {
     this.segundaPaginaCompleta = valido;
   }
 
-  public validarTerceiraPagina(valido: boolean): void {
-    this.terceiraPaginaCompleta = valido;
+  private atualizarEstadoDoCarrinho(pagina: number): void {
+    switch (pagina) {
+      case 1:
+        if (this.primeiraPaginaCompleta && this.detalhesEnvio.formulario.valid) {
+          this.carrinhoService.definirEnvio(this.detalhesEnvio.formulario.getRawValue());
+        }
+        break;
+      case 2:
+        if (this.segundaPaginaCompleta && this.detalhesPagamento.pagamentoEscolhido) {
+          const pagamento = this.detalhesPagamento.pagamentoEscolhido;
+          const cartaoCredito = this.detalhesPagamento.cartaoCredito;
+          this.finalizando = true;
+          this.carrinhoService
+            .definirPagamento({ ...pagamento, cartaoCredito })
+            .then(async () => {
+              await this.carrinhoService.finalizarCompra();
+            })
+            .finally(() => this.finalizando = false);
+        }
+        break;
+    }
   }
 }

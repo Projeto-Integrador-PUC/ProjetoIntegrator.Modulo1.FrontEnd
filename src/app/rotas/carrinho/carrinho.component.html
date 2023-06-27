@@ -21,7 +21,12 @@
             <app-resumo [entrega]="entrega" [subtotal]="total" (calcularEntrega)="abrirDialogCalcularFrete()"></app-resumo>
         </div>
         <div class="mb-3">
-            <button mat-raised-button class="step-button text-light" color="primary" (click)="proximo()" [disabled]="false">Próximo</button>
+            <button mat-raised-button class="step-button text-light" color="primary" (click)="proximo()" [disabled]="false">
+                <div class="d-flex align-items-center">
+                    {{ selectedTabIndex === 2 ? 'Finalizar' : 'Próximo' }}
+                    <mat-spinner class="ms-1" [diameter]="20" color="primary" *ngIf="finalizando"></mat-spinner>
+                </div>
+            </button>
             <button mat-raised-button class="step-button" color="white" (click)="cancelar()">Cancelar</button>
         </div>
     </ng-container>

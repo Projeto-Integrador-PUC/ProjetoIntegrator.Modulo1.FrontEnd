@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+
 import { RotasService } from './shared/services/rotas.service';
 
 @Component({
@@ -8,7 +11,13 @@ import { RotasService } from './shared/services/rotas.service';
 })
 export class AppComponent {
 
-  constructor(public rotas: RotasService) { }
+  constructor(
+    public rotas: RotasService,
+    private matIconRegistry: MatIconRegistry,
+    private domSanitizer: DomSanitizer
+    ) {
+    this.registerIcons();
+  }
 
   get classeHeader(): string {
     switch (this.rotas.rotaAtual) {
@@ -25,5 +34,14 @@ export class AppComponent {
       default:
         return '';
     }
+  }
+
+  private registerIcons(): void {
+    this.matIconRegistry
+      .addSvgIcon('pix-logo', this.sanitizedUrl('assets/icons/pix-logo.svg'));
+  }
+
+  private sanitizedUrl(url: string): SafeResourceUrl {
+    return this.domSanitizer.bypassSecurityTrustResourceUrl(url);
   }
 }

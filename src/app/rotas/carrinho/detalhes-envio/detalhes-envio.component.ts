@@ -54,7 +54,6 @@ export class DetalhesEnvioComponent {
       estado: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
       cep: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
       email: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
-      freteGratis: new FormControl(false, { nonNullable: true, validators: [Validators.required] }),
     });
   }
 
