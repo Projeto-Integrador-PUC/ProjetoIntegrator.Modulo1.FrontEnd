@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
 import { openClose } from 'src/app/shared/animations/open-closed-trigger';
+import { CartaoCreditoComponent } from './componentes/cartao-credito/cartao-credito.component';
+import { CartaoCredito } from './interfaces/cartao-credito.interface';
 import { OpcaoPagamento } from './interfaces/opcoes-pagamento.interface';
 
 @Component({
@@ -10,19 +12,37 @@ import { OpcaoPagamento } from './interfaces/opcoes-pagamento.interface';
   animations: [openClose],
 })
 export class SelecionarPagamentoComponent {
+  @ViewChild(CartaoCreditoComponent) cartaoCreditoComponent!: CartaoCreditoComponent;
+
+  public get cartaoCredito(): CartaoCredito | null {
+    if (this.pagamentoEscolhido.id === 1 && this.cartaoCreditoComponent.formularioCartaoCredito.valid) {
+      return this.cartaoCreditoComponent.formularioCartaoCredito.getRawValue();
+    }
+
+    return null;
+  }
+
+  public get valido(): boolean {
+    if (!this.pagamentoEscolhido) {
+      return false;
+    } else if (this.pagamentoEscolhido.id === 1) {
+      return this.cartaoCreditoComponent?.formularioCartaoCredito?.valid || false;
+    } else {
+      return true;
+    }
+  }
+
   public opcoesPagamento: OpcaoPagamento[] = [
     {
       nome: 'Cartão de crédito',
       icone: 'credit_card',
       descricao: 'Pague com cartão de crédito',
-      selecionado: false,
       id: 1
     },
     {
       nome: 'Pix',
       icone: 'qr_code',
       descricao: 'Pague com Pix',
-      selecionado: false,
       id: 2
     },
   ];

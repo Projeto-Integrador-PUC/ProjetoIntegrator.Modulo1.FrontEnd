@@ -9,5 +9,4 @@ export interface FormularioEnvio {
     estado: FormControl<string>;
     cep: FormControl<string>;
     email: FormControl<string>;
-    freteGratis: FormControl<boolean>;
 }
