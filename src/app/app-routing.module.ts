@@ -12,7 +12,8 @@ const rotas: Routes = [
   { path: 'produtos', loadChildren: () => import('./rotas/loja/loja.module').then(m => m.LojaModule) },
   { path: 'ajuda', component: AjudaComponent },
   { path: 'carrinho', loadChildren: () => import('./rotas/carrinho/carrinho.module').then(m => m.CarrinhoModule) },
-  { path: 'admin', loadChildren: () => import('./rotas/admin/admin.module').then(m => m.AdminModule) }
+  { path: 'admin', loadChildren: () => import('./rotas/admin/admin.module').then(m => m.AdminModule) },
+  { path: 'pedido', loadChildren: () => import('./rotas/pedido/pedido.module').then(m => m.PedidoModule) },
 ];
 
 @NgModule({

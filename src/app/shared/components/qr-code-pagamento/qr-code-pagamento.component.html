@@ -1,0 +1,10 @@
+<div class="d-flex align-items-center flex-column">
+    <div>Faça o pagamento do seu pedido</div>
+    <div class="big bold">{{ valor | currency: 'BRL' }}</div>
+    <canvas #qrCodeImage></canvas>
+    <div>Copie e cole o código abaixo no aplicativo do seu banco para efetuar o pagamento</div>
+    <div class="d-flex align-items-center w-100 mt-2">
+        <input class="input" readonly [value]="qrCode">
+        <mat-icon class="clickable" (click)="copiarParaAreaDeTransferencia()">content_copy</mat-icon>
+    </div>
+</div>

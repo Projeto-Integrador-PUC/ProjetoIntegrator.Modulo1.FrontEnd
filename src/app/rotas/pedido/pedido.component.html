@@ -1,0 +1,80 @@
+<div class="pedido d-flex align-items-center justify-content-center" *ngIf="!loading; else loadingScreen">
+    <div class="pedido-container">
+        <div class="mt-2 bordered" *ngIf="resumo.idPagamento === 2">
+            <app-qr-code-pagamento [valor]="resumo.subTotal + resumo.valorFrete" [qrCode]="qrCode"></app-qr-code-pagamento>
+        </div>
+
+        <div class="forma-pagamento bordered mt-5">
+            <div class="title">Forma de pagamento</div>
+            <div class="d-flex align-items-center mt-1">
+                <mat-icon *ngIf="resumo.idPagamento === 1" class="big-icon">credit_card</mat-icon>
+                <img *ngIf="resumo.idPagamento === 2" src="https://devtools.com.br/img/pix/logo-pix-png-920x920.png" class="big-icon">
+                <div class="ms-3">
+                    <div class="preco">{{ resumo.subTotal + resumo.valorFrete | currency: 'BRL' }}</div>
+                    <div>Em 1x de {{ resumo.subTotal + resumo.valorFrete | currency: 'BRL' }}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bordered mt-5">
+            <div class="title mb-2">Status do pedido</div>
+            <mat-stepper class="stepper" linear #stepper>
+                <mat-step [editable]="false"><ng-template matStepLabel><span class="bold">Pedido<br>realizado</span></ng-template></mat-step>
+                <mat-step [editable]="false"><ng-template matStepLabel><span class="bold">Pagamento<br>aprovado</span></ng-template></mat-step>
+                <mat-step [editable]="false"><ng-template matStepLabel><span class="bold">Pedido<br>em separação</span></ng-template></mat-step>
+                <mat-step [editable]="false"><ng-template matStepLabel><span class="bold">Pedido<br>em transporte</span></ng-template></mat-step>
+                <mat-step [editable]="false"><ng-template matStepLabel><span class="bold">Pedido<br>entregue</span></ng-template></mat-step>
+            </mat-stepper>
+        </div>
+
+        <div class="d-flex justify-content-between mt-5">
+            <div class="endereco-entrega bordered half">
+                <div class="title">Endereço de entrega</div>
+                <div class="mt-1">{{ resumo.logradouro }}<span *ngIf="resumo.complemento"> - {{ resumo.complemento }}</span></div>
+                <div class="mt-1">{{ resumo.cidade }} - {{ resumo.estado }}</div>
+                <div class="mt-1">{{ resumo.cep | mask: '00000-000' }}</div>
+            </div>
+            <div class="resumo bordered half">
+                <div class="title">Resumo</div>
+                <div class="d-flex justify-content-between mt-1">
+                    <div>Subtotal</div>
+                    <div class="bold">{{ resumo.subTotal | currency: 'BRL' }}</div>
+                </div>
+                <div class="d-flex justify-content-between mt-1">
+                    <div>Frete</div>
+                    <div class="bold">{{ resumo.valorFrete | currency: 'BRL' }}</div>
+                </div>
+                <div class="d-flex justify-content-between mt-1">
+                    <div class="bold">Total</div>
+                    <div class="bold">{{ resumo.subTotal + resumo.valorFrete | currency: 'BRL' }}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="produtos bordered my-5">
+            <div class="title">Produtos do pedido</div>
+            <ng-container *ngFor="let produto of resumo.produtos">
+                <div class="my-4 d-flex align-items-center">
+                    <div class="image">
+                        <img [src]="produto.imagem" alt="Imagem do produto">
+                    </div>
+                    <div class="d-flex justify-content-between w-100">
+                        <div>
+                            <div class="bold">{{ produto.nome }}</div>
+                            <div>{{ produto.quantidade}}x por {{ produto.valorUnitario | currency: 'BRL' }} cada</div>
+                        </div>
+                        <div>
+                            <div class="big-font bold">{{ produto.valorUnitario * produto.quantidade | currency: 'BRL' }}</div>
+                        </div>
+                    </div>
+                </div>
+                <mat-divider></mat-divider>
+            </ng-container>
+        </div>
+    </div>
+</div>
+
+<ng-template #loadingScreen>
+  <div class="loading d-flex align-items-center justify-content-center">
+    <mat-spinner [diameter]="80"></mat-spinner>
+  </div> 
