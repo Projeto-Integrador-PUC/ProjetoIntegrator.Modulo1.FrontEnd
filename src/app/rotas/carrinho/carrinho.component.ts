@@ -6,6 +6,7 @@ import { DetalhesEnvioComponent } from './detalhes-envio/detalhes-envio.componen
 import { QuantidadeAlteradaEvent } from './interfaces/quantidade-alterada.interface';
 import { Entrega } from './models/entrega/entrega';
 import { SelecionarPagamentoComponent } from './selecionar-pagamento/selecionar-pagamento.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-carrinho',
@@ -22,7 +23,7 @@ export class CarrinhoComponent {
   private primeiraPaginaCompleta = true;
   private segundaPaginaCompleta = false;
 
-  constructor(private carrinhoService: CarrinhoService) { }
+  constructor(private carrinhoService: CarrinhoService, private router: Router) { }
 
   public get desabilitarBotaoProximo(): boolean {
     switch (this.selectedTabIndex) {
@@ -93,7 +94,8 @@ export class CarrinhoComponent {
           this.carrinhoService
             .definirPagamento({ ...pagamento, cartaoCredito })
             .then(async () => {
-              await this.carrinhoService.finalizarCompra();
+              const guid = await this.carrinhoService.finalizarCompra();
+              this.router.navigate(['/pedido', guid]);
             })
             .finally(() => this.finalizando = false);
         }

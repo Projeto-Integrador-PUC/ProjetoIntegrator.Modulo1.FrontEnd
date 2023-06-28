@@ -1,0 +1,85 @@
+.pedido {
+    &-container {
+        width: 50%;
+    }
+
+    .title {
+        font-size: 25px;
+        font-weight: 700;
+        color: #000
+    }
+
+    .big-icon {
+        font-size: 40px;
+        width: 40px;
+        height: 40px;
+        color: black;
+    }
+
+    .bordered {
+        border: solid 1px #ccc;
+        border-radius: 5px;
+        padding: 20px;
+    }
+
+    .preco {
+        font-size: 18px;
+        font-weight: 700;
+        color: black;
+    }
+
+    .half {
+        width: calc(50% - 10px);
+    }
+
+    .bold {
+        font-weight: 700;
+        color: black;
+    }
+
+    .image img {
+        width: 100px;
+        height: 100px;
+        padding: 10px;
+    }
+
+    .big-font {
+        font-size: 20px;
+    }
+
+    .stepper {
+        pointer-events: none;
+    }
+}
+
+.loading {
+    height: 100vh;
+}
+
+:host ::ng-deep {
+    .mat-step-header {
+        flex-direction: column;
+    }
+
+    .mat-horizontal-content-container {
+        display: none;
+    }
+
+    .mat-step-icon:not(.mat-step-icon-state-done):not(.mat-step-icon-selected) {
+        background-color: #fff;
+        border: solid 2px #000;
+    }
+
+    .mat-step-icon-selected {
+        background-color: #fff;
+        border: solid 2px #03ef03;
+    }
+
+    .mat-step-icon-state-done {
+        background-color: #03ef03;
+    }
+
+    .mat-step-label {
+        text-align: center;
+    }
+}

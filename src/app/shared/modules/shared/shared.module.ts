@@ -8,15 +8,17 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { CarouselComponent } from '../../components/carousel/carousel.component';
 import { DialogProdutoAdicionadoComponent } from '../../components/dialog-produto-adicionado/dialog-produto-adicionado.component';
+import { QrCodePagamentoComponent } from '../../components/qr-code-pagamento/qr-code-pagamento.component';
 import { SeletorQuantidadeComponent } from '../../components/seletor-quantidade/seletor-quantidade.component';
 import { CarrinhoService } from '../../services/carrinho.service';
 import { CarrinhoState } from '../../stores/carrinho/carrinho.state';
 
 @NgModule({
   declarations: [
-    SeletorQuantidadeComponent,
     CarouselComponent,
     DialogProdutoAdicionadoComponent,
+    QrCodePagamentoComponent,
+    SeletorQuantidadeComponent,
   ],
   imports: [
     CommonModule,
@@ -27,9 +29,10 @@ import { CarrinhoState } from '../../stores/carrinho/carrinho.state';
     NgxsModule.forFeature([CarrinhoState]),
   ],
   exports: [
-    SeletorQuantidadeComponent,
     CarouselComponent,
     DialogProdutoAdicionadoComponent,
+    SeletorQuantidadeComponent,
+    QrCodePagamentoComponent,
   ],
   providers: [
     CarrinhoService,

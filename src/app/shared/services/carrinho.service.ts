@@ -117,6 +117,8 @@ export class CarrinhoService {
 
   public finalizarCompra(): Promise<string> {
     const pedido = this.store.selectSnapshot(CarrinhoState.carrinho);
+
+    pedido.produtos.forEach(produto => produto.imagem = '');
     
     return lastValueFrom(this.httpClient.post<Resposta<string>>(`${API}/pagamento/checkout`, pedido)
       .pipe(
@@ -124,4 +126,12 @@ export class CarrinhoService {
         finalize(() => this.limparCarrinho()),
       ));
   }
+
+  public async gerarQRCodePagamento(valor: number): Promise<string> {
+    return lastValueFrom(this.httpClient.post<Resposta<string>>(`${API}/pagamento/qr-code?valor=${valor}`, null)
+      .pipe(
+        map(resposta => resposta.dados),
+      ));
+  }
+
 }
