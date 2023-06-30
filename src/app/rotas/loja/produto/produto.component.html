@@ -1,0 +1,10 @@
+<div class="produto p-3 d-flex flex-column align-items-center">
+    <div class="clickable" (click)="abrirDetalhes()">
+        <img [src]="produto.imagem" [alt]="produto.nome" class="produto-imagem">
+        <div class="produto-info d-flex flex-column align-items-center">
+            <p class="produto-nome mt-2">{{ produto.nome }}</p>
+            <p class="produto-preco">{{ produto.preco | currency: 'BRL' }}</p>
+        </div>
+    </div>
+    <button mat-raised-button color="white" class="produto-adicionar" (click)="adicionar()">Adicionar</button>
+</div>

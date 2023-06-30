@@ -1,0 +1,31 @@
+.produto {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 5px;
+    margin: 15px;
+    min-height: 520px;
+
+    &-imagem {
+        width: 300px;
+        height: 300px;
+    }
+
+    &-nome {
+        font-size: 25px;
+        text-align: center;
+    }
+
+    &-preco {
+        font-size: 25px;
+        font-weight: 500;
+        color: black;
+    }
+
+    &-adicionar {
+        width: 50%;
+        border-radius: 25px;
+    }
+}
+
+.clickable {
+    cursor: pointer;
+}

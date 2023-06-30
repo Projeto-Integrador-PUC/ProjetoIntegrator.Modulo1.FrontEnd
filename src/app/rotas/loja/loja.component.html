@@ -1,1 +1,12 @@
-<p>loja works!</p>
+<div class="loja-vitrine row" *ngIf="paginator && !paginator.loading; else loadingScreen">
+  <div class="col-3" *ngFor="let produto of paginator.produtos">
+    <app-produto [produto]="produto" (adicionarProduto)="adicionarProduto($event)" (irParaDetalhes)="abrirDetalhes($event)"></app-produto>
+  </div>
+  <mat-paginator [pageIndex]="paginator.pagina - 1" [length]="paginator.totalProdutos" [pageSize]="paginator.quantidade" [pageSizeOptions]="[paginator.quantidade]" (page)="atualizarPagina($event)"></mat-paginator>
+</div>
+
+<ng-template #loadingScreen>
+    <div class="loading d-flex align-items-center justify-content-center my-5">
+      <mat-spinner [diameter]="80"></mat-spinner>
+    </div> 
+</ng-template>

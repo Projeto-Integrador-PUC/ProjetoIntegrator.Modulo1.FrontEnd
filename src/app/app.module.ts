@@ -19,7 +19,6 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { AdminModule } from './rotas/admin/admin.module';
 import { AjudaComponent } from './rotas/ajuda/ajuda.component';
-import { LojaComponent } from './rotas/loja/loja.component';
 import { SobreComponent } from './rotas/sobre/sobre.component';
 import { LinksComponent } from './shared/components/links/links.component';
 import { CustomCurrencyMaskConfig } from './shared/constants/ngx-mask-config.const';
@@ -35,7 +34,6 @@ registerLocaleData(ptBr);
   declarations: [
     AppComponent,
     SobreComponent,
-    LojaComponent,
     AjudaComponent,
     HeaderComponent,
     LinksComponent,
