@@ -24,6 +24,7 @@ import { AdicionarProdutoComponent } from './gerenciar-produtos/adicionar-produt
 import { GerenciarProdutosComponent } from './gerenciar-produtos/gerenciar-produtos.component';
 import { TabelaProdutosComponent } from './gerenciar-produtos/tabela-produtos/tabela-produtos.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
 
 
 
@@ -33,7 +34,8 @@ import { SideBarComponent } from './side-bar/side-bar.component';
     SideBarComponent,
     GerenciarProdutosComponent,
     AdicionarProdutoComponent,
-    TabelaProdutosComponent
+    TabelaProdutosComponent,
+    AdminLoginComponent
   ],
   imports: [
     AdminRoutingModule,

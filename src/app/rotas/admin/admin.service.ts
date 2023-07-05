@@ -25,4 +25,9 @@ export class AdminService {
     public adicionarProduto(produto: Produto): Observable<Resposta> {
         return this.http.post<Resposta>(this.produtosEndpoint, produto);
     }
+
+    public logar(usuario: string, senha: string): Observable<boolean> {
+        return this.http.post<Resposta>(API + '/admin/login', { usuario, senha }, {  observe: 'response', withCredentials: true })
+            .pipe(map(resposta => resposta.body?.sucesso ?? false));
+    }
 }
