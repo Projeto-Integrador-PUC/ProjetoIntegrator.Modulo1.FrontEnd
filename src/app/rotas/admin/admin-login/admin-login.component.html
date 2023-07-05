@@ -1,0 +1,26 @@
+<!-- app.component.html -->
+<div class="admin-login">
+    <mat-card class="card">
+        <mat-card-header>
+          <mat-card-title>Acesso ao painel do administrador</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <form class="inputs" (ngSubmit)="logar()" [formGroup]="credenciaisForm">
+            <mat-form-field appearance="outline">
+              <input matInput placeholder="Usuario" formControlName="usuario"/>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <input matInput type="password" placeholder="Senha" formControlName="senha"/>
+            </mat-form-field>
+            <div *ngIf="mensagemErro">{{ mensagemErro }}</div>
+            <button mat-raised-button color="white" [disabled]="credenciaisForm.invalid">
+                <ng-container *ngIf="!loading">
+                  <div>Login</div>
+                </ng-container>
+                <mat-spinner *ngIf="loading" class="spinner" [diameter]="30"></mat-spinner>
+            </button>
+          </form>
+        </mat-card-content>
+    </mat-card>
+</div>
+  

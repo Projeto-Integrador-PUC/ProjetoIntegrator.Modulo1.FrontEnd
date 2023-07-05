@@ -1,4 +1,4 @@
-<div class="d-flex align-items-center p-2 header">
+<div class="d-flex align-items-center p-2 header" *ngIf="!ehPaginaLogin">
     <mat-icon (click)="drawer.toggle()" class="icon" *ngIf="!drawer.opened">menu</mat-icon>
     <mat-icon (click)="drawer.toggle()" class="icon" *ngIf="drawer.opened">close</mat-icon>
     <span class="title">Painel do administrador</span>

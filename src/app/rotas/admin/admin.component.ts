@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -8,6 +9,12 @@ import { MatDrawer } from '@angular/material/sidenav';
 })
 export class AdminComponent {
   @ViewChild(MatDrawer) drawer!: MatDrawer;
+
+  constructor(private router: Router) { }
+
+  get ehPaginaLogin(): boolean {
+    return this.router.url === '/admin/login';
+  }
 
   public closeSideBar(): void {
     this.drawer.close();

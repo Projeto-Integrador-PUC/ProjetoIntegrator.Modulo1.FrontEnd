@@ -1,0 +1,29 @@
+.admin-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    .card {
+        display: flex;
+        align-items: center;
+        width: 50%;
+    
+        .inputs {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        mat-form-field {
+            margin: 10px 0;
+        }
+
+        mat-card-title {
+            font-size: 25px;
+            margin-bottom: 10px;
+        }
+    }
+}
