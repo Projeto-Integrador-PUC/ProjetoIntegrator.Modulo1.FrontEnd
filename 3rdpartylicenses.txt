@@ -500,6 +500,9 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 ng2-currency-mask
 
+ngx-cookie-service
+MIT
+
 ngx-image-cropper
 MIT
 MIT License
