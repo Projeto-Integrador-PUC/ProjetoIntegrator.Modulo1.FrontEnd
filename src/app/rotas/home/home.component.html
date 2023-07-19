@@ -31,14 +31,14 @@
         </div>
         <app-carousel [items]="categorias"></app-carousel>
         <mat-divider class="my-4"></mat-divider>
-        <div class="title d-flex justify-content-center">
+        <div class="title d-flex justify-content-center mt-5 mb-4">
             <span>PRODUTOS EM DESTAQUE</span>
         </div>
-        <app-carousel [items]="produtos" (itemClicked)="navegarParaDetalhesDoProduto($event)"></app-carousel>
-        <mat-divider class="my-4"></mat-divider>
+        <app-carousel [items]="produtos" (itemClicked)="navegarParaDetalhesDoProduto($event)" class="big"></app-carousel>
+        <mat-divider class="my-5"></mat-divider>
         <div class="about-us">
             <div class="about-us-title">Sobre Nós</div>
-            <div class="about-us-description">
+            <div class="about-us-description mb-4">
                 Only Babies é uma loja online especializada em produtos e artigos para bebês. Nossa missão é oferecer aos pais e cuidadores uma ampla seleção de produtos de alta qualidade para atender às necessidades dos seus pequenos.
             </div>
         </div>
